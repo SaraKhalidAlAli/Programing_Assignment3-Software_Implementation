@@ -43,3 +43,9 @@ class MainWindow:
         # Add a button for displaying venue information in MainWindow
         self.display_venue_info_button = tk.Button(master, text="Display Venue Info", command=self.open_display_venue_info_window)
         self.display_venue_info_button.grid(row=4, column=1, padx=10, pady=5, sticky="ew")
+
+
+    # Create a venue list in the MainWindow class
+        # Status bar
+        self.status_bar = tk.Label(master, text="", bd=1, relief=tk.SUNKEN, anchor=tk.W)
+        self.status_bar.grid(row=5, column=0, sticky=tk.W + tk.E)
