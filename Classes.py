@@ -80,7 +80,82 @@ class Client:
 
 
 class Event:
+    #attributes for the Event and initializing it
+    def __init__(self, event_id, event_type, theme, date, time, duration, venue, client_id, guest_list):
+        self.event_id = event_id
+        self.event_type = event_type
+        self.theme = theme
+        self.date = date
+        self.time = time
+        self.duration = duration
+        self.venue = venue
+        self.client_id = client_id
+        self.guest_list = guest_list
+
+    # Getter, setter methods:
+    def get_event_id(self):
+        return self.event_id
+    def set_event_id(self, event_id):
+        self.event_id = event_id
+    def get_event_type(self):
+        return self.event_type
+    def set_event_type(self, event_type):
+        self.event_type = event_type
+    def get_theme(self):
+        return self.theme
+    def set_theme(self, theme):
+        self.theme = theme
+    def get_date(self):
+        return self.date
+    def set_date(self, date):
+        self.date = date
+    def get_time(self):
+        return self.time
+    def set_time(self, time):
+        self.time = time
+    def get_duration(self):
+        return self.duration
+    def set_duration(self, duration):
+        self.duration = duration
+    def get_venue(self):
+        return self.venue
+    def set_venue(self, venue):
+        self.venue = venue
+    def get_client_id(self):
+        return self.client_id
+    def set_client_id(self, client_id):
+        self.client_id = client_id
+    def get_guest_list(self):
+        return self.guest_list
+    def set_guest_list(self, guest_list):
+        self.guest_list = guest_list
+
 class Guest:
+    #attributes for the Guest and initializing it
+    def __init__(self, guest_id, name, address, contact_details):
+        self.guest_id = guest_id
+        self.name = name
+        self.address = address
+        self.contact_details = contact_details
+
+    # Getter , setter methods:
+    def get_guest_id(self):
+        return self.guest_id
+    def set_guest_id(self, guest_id):
+        self.guest_id = guest_id
+    def get_name(self):
+        return self.name
+    def set_name(self, name):
+        self.name = name
+    def get_address(self):
+        return self.address
+    def set_address(self, address):
+        self.address = address
+    def get_contact_details(self):
+        return self.contact_details
+    def set_contact_details(self, contact_details):
+        self.contact_details = contact_details
+
 class Venue:
 class Supplier:
 class Caterer:
