@@ -157,5 +157,40 @@ class Guest:
         self.contact_details = contact_details
 
 class Venue:
+    # attributes for the Venue and initializing it
+    def __init__(self, venue_id, name, address, contact, min_guests, max_guests):
+        self.venue_id = venue_id
+        self.name = name
+        self.address = address
+        self.contact = contact
+        self.min_guests = min_guests
+        self.max_guests = max_guests
+
+    # Getter, setter methods:
+    def get_venue_id(self):
+        return self.venue_id
+    def set_venue_id(self, venue_id):
+        self.venue_id = venue_id
+    def get_name(self):
+        return self.name
+    def set_name(self, name):
+        self.name = name
+    def get_address(self):
+        return self.address
+    def set_address(self, address):
+        self.address = address
+    def get_contact(self):
+        return self.contact
+    def set_contact(self, contact):
+        self.contact = contact
+    def get_min_guests(self):
+        return self.min_guests
+    def set_min_guests(self, min_guests):
+        self.min_guests = min_guests
+    def get_max_guests(self):
+        return self.max_guests
+    def set_max_guests(self, max_guests):
+        self.max_guests = max_guests
+
 class Supplier:
 class Caterer:
