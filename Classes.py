@@ -46,7 +46,39 @@ class Employee:
     def set_passport_details(self, passport_details):
         self.passport_details = passport_details
 
+
 class Client:
+    #attributes for the clients and initializing
+    def __init__(self, client_id, name, address, phone_number, budget):
+        self.client_id = client_id
+        self.name = name
+        self.address = address
+        self.phone_number = phone_number
+        self.budget = budget
+
+    # Getter, setter methods:
+    def get_client_id(self):
+        return self.client_id
+    def set_client_id(self, client_id):
+        self.client_id = client_id
+    def get_name(self):
+        return self.name
+    def set_name(self, name):
+        self.name = name
+    def get_address(self):
+        return self.address
+    def set_address(self, address):
+        self.address = address
+    def get_phone_number(self):
+        return self.phone_number
+    def set_phone_number(self, phone_number):
+        self.phone_number = phone_number
+    def get_budget(self):
+        return self.budget
+    def set_budget(self, budget):
+        self.budget = budget
+
+
 class Event:
 class Guest:
 class Venue:
