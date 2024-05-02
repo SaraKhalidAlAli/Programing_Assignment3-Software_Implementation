@@ -193,4 +193,29 @@ class Venue:
         self.max_guests = max_guests
 
 class Supplier:
+    # attributes for the Supplier and initializing it
+    def __init__(self, supplier_id, name, address, contact_details):
+        self.supplier_id = supplier_id
+        self.name = name
+        self.address = address
+        self.contact_details = contact_details
+
+    # Getter, setter methods:
+    def get_supplier_id(self):
+        return self.supplier_id
+    def set_supplier_id(self, supplier_id):
+        self.supplier_id = supplier_id
+    def get_name(self):
+        return self.name
+    def set_name(self, name):
+        self.name = name
+    def get_address(self):
+        return self.address
+    def set_address(self, address):
+        self.address = address
+    def get_contact_details(self):
+        return self.contact_details
+    def set_contact_details(self, contact_details):
+        self.contact_details = contact_details
+
 class Caterer:
