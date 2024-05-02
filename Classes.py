@@ -218,4 +218,25 @@ class Supplier:
     def set_contact_details(self, contact_details):
         self.contact_details = contact_details
 
-class Caterer:
+class Caterer(Supplier):
+    # attributes for the Caterer and initializing it
+    def __init__(self, supplier_id, name, address, contact_details, menu, min_guests, max_guests):
+        super().__init__(supplier_id, name, address, contact_details)
+        self.menu = menu
+        self.min_guests = min_guests
+        self.max_guests = max_guests
+
+    # Getter, setter methods to Caterer:
+    def get_menu(self):
+        return self.menu
+    def set_menu(self, menu):
+        self.menu = menu
+    def get_min_guests(self):
+        return self.min_guests
+    def set_min_guests(self, min_guests):
+        self.min_guests = min_guests
+    def get_max_guests(self):
+        return self.max_guests
+    def set_max_guests(self, max_guests):
+        self.max_guests = max_guests
+
