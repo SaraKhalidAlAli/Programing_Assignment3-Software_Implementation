@@ -1064,3 +1064,33 @@ class ModifyVenueWindow:
                 break
         else:
             messagebox.showerror("Error", "Venue not found. Please reload and try again.")
+
+
+class DeleteEmployeeWindow:
+    def __init__(self, master, employee_list, status_bar):
+        self.master = master
+        self.master.title("Delete Employee")
+        self.employee_list = employee_list
+        self.status_bar = status_bar
+
+        # Label and entry field for employee ID
+        self.emp_id_label = tk.Label(master, text="Employee ID:")
+        self.emp_id_label.grid(row=0, column=0, padx=10, pady=5)
+        self.emp_id_entry = tk.Entry(master)
+        self.emp_id_entry.grid(row=0, column=1, padx=10, pady=5)
+
+        # Button to delete employee
+        self.delete_button = tk.Button(master, text="Delete", command=self.delete_employee)
+        self.delete_button.grid(row=1, columnspan=2, padx=10, pady=5)
+    def delete_employee(self):
+        emp_id = self.emp_id_entry.get()
+        # Find and delete the employee by ID
+        for i, employee in enumerate(self.employee_list):
+            if employee[1] == emp_id:
+                self.employee_list.pop(i)
+                messagebox.showinfo("Success", "Employee deleted successfully!")
+                self.status_bar.config(text="Employee deleted successfully!")
+                return
+
+        messagebox.showerror("Error", "Employee ID not found")
+        self.status_bar.config(text="Employee ID not found")
