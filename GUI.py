@@ -1168,3 +1168,7 @@ class DeleteSupplierWindow:
                 del self.supplier_list[i]
                 messagebox.showinfo("Success", "Supplier deleted successfully!")
                 self.status_bar.config(text="Supplier deleted successfully!")
+                return
+
+        messagebox.showerror("Error", "Supplier ID not found")
+        self.status_bar.config(text="Supplier ID not found")
