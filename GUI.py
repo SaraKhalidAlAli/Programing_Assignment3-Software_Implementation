@@ -260,16 +260,17 @@ class EmployeeWindow:
         self.employee_list = employee_list
 
         # Labels and entry fields for attributes
+        #Lable name
         self.name_label = tk.Label(master, text="Name:")
         self.name_label.grid(row=0, column=0, padx=10, pady=5)
         self.name_entry = tk.Entry(master)
         self.name_entry.grid(row=0, column=1, padx=10, pady=5)
-
+        #Lable Employee ID
         self.emp_id_label = tk.Label(master, text="Employee ID:")
         self.emp_id_label.grid(row=1, column=0, padx=10, pady=5)
         self.emp_id_entry = tk.Entry(master)
         self.emp_id_entry.grid(row=1, column=1, padx=10, pady=5)
-
+        #Lable Job Title with options of Manager or Salesperson
         self.job_title_label = tk.Label(master, text="Job Title:")
         self.job_title_label.grid(row=2, column=0, padx=10, pady=5)
         self.job_title_var = tk.StringVar(master)
@@ -325,12 +326,12 @@ class DisplayEmployeeWindow:
             if employee[1] == emp_id:
                 found_employee = employee
                 break
-
+    #if statment for displying
         if found_employee:
             # Display employee information
             info_str = f"Name: {found_employee[0]}\nEmployee ID: {found_employee[1]}\nJob Title: {found_employee[2]}"
             messagebox.showinfo("Employee Information", info_str)
-        else:
+        else: #error handling
             messagebox.showerror("Error", "Employee ID not found")
 
 
@@ -429,7 +430,7 @@ class ClientWindow:
                 "Venue": venue
             }
             messagebox.showinfo("Success", "Client data saved successfully!")
-        else:
+        else: #error handling
             messagebox.showerror("Error", "Please fill in all fields!")
 
         # Clear entry fields
@@ -471,7 +472,7 @@ class DisplayClientWindow:
             # Display client information
             info_str = "\n".join([f"{key}: {value}" for key, value in client_info.items()])
             messagebox.showinfo("Client Information", info_str)
-        else:
+        else: #error handling
             # Display error message if event ID is not found
             messagebox.showerror("Error", "Event ID not found")
 
@@ -530,7 +531,7 @@ class GuestWindow:
         if name and address and phone_number and email:
             # Here you would save the guest data along with the associated event
             messagebox.showinfo("Success", "Guest data saved successfully!")
-        else:
+        else: #error handling
             messagebox.showerror("Error", "Please fill in all fields!")
 
         # Clear entry fields
@@ -566,7 +567,7 @@ class DisplayGuestInfoWindow:
             # Display guest information
             info_str = "\n".join([f"{key}: {value}" for key, value in guest_info.items()])
             messagebox.showinfo("Guest Information", info_str)
-        else:
+        else: #error handling
             # Display error message if guest ID is not found
             messagebox.showerror("Error", "Guest ID not found")
 
@@ -628,7 +629,7 @@ class SupplierWindow:
             # Assuming you add the supplier to supplier_list
             self.supplier_list.append((supplier_id, name, product, phone_number, email, event_id))
             messagebox.showinfo("Success", "Supplier data saved successfully!")
-        else:
+        else:   #error handling
             messagebox.showerror("Error", "Please fill in all fields!")
 
         # Clear entry fields
@@ -670,7 +671,7 @@ class DisplaySupplierInfoWindow:
             # Display supplier information
             info_str = f"Name: {found_supplier[1]}\nProduct: {found_supplier[2]}\nPhone Number: {found_supplier[3]}\nEmail: {found_supplier[4]}"
             messagebox.showinfo("Supplier Information", info_str)
-        else:
+        else:  #error handling
             messagebox.showerror("Error", "Supplier ID not found")
 
 
@@ -730,7 +731,7 @@ class VenueWindow:
             # Assuming you add the venue to venue_list
             self.venue_list.append((venue_id, name, address, contact, min_guests, max_guests))
             messagebox.showinfo("Success", "Venue data saved successfully!")
-        else:
+        else:  #error handling
             messagebox.showerror("Error", "Please fill in all fields!")
 
         # Clear entry fields
@@ -772,7 +773,7 @@ class DisplayVenueInfoWindow:
             # Display venue information
             info_str = f"Name: {found_venue[1]}\nAddress: {found_venue[2]}\nContact: {found_venue[3]}\nMin Guests: {found_venue[4]}\nMax Guests: {found_venue[5]}"
             messagebox.showinfo("Venue Information", info_str)
-        else:
+        else:       #error handling
             messagebox.showerror("Error", "Venue ID not found")
 
 class ModifyEmployeeWindow:
@@ -875,7 +876,7 @@ class ModifyClientWindow:
             self.phone_entry.insert(0, client['Phone Number'])
             self.budget_entry.insert(0, client['Budget'])
             self.display_client_fields()
-        else:
+        else:   #error handling
             messagebox.showerror("Error", "Client ID not found")
 
     def display_client_fields(self):
@@ -905,7 +906,7 @@ class ModifyClientWindow:
             }
             messagebox.showinfo("Success", "Client updated successfully!")
             self.status_bar.config(text="Updated client details successfully.")
-        else:
+        else:  #error handling
             messagebox.showerror("Error", "Client not found. Please reload and try again.")
 
 class ModifySupplierWindow:
@@ -936,7 +937,7 @@ class ModifySupplierWindow:
                 self.name_entry.insert(0, supplier[1])
                 self.product_entry.insert(0, supplier[2])
                 self.display_supplier_fields()
-                return
+                return #error handling
         messagebox.showerror("Error", "Supplier ID not found")
     def display_supplier_fields(self):
         self.name_label.grid(row=2, column=0)
@@ -960,7 +961,7 @@ class ModifySupplierWindow:
                 self.status_bar.config(text="Updated supplier details successfully.")
                 found = True
                 break
-        if not found:
+        if not found: #error handling
             messagebox.showerror("Error", "Supplier not found. Please reload and try again.")
 
 
@@ -995,7 +996,7 @@ class ModifyGuestWindow:
             self.address_entry.insert(0, guest['Address'])
             self.contact_entry.insert(0, guest['Contact Details'])
             self.display_guest_fields()
-        else:
+        else: #error handling
             messagebox.showerror("Error", "Guest ID not found")
     def display_guest_fields(self):
         self.name_label.grid(row=2, column=0)
@@ -1021,7 +1022,7 @@ class ModifyGuestWindow:
             }
             messagebox.showinfo("Success", "Guest updated successfully!")
             self.status_bar.config(text="Updated guest details successfully.")
-        else:
+        else: #error handling
             messagebox.showerror("Error", "Guest not found. Please reload and try again.")
 
 
@@ -1093,7 +1094,7 @@ class ModifyVenueWindow:
                 messagebox.showinfo("Success", "Venue updated successfully!")
                 self.status_bar.config(text="Updated venue details successfully.")
                 break
-        else:
+        else: #error handling
             messagebox.showerror("Error", "Venue not found. Please reload and try again.")
 
 
@@ -1123,7 +1124,7 @@ class DeleteEmployeeWindow:
                 self.status_bar.config(text="Employee deleted successfully!")
                 return
 
-        messagebox.showerror("Error", "Employee ID not found")
+        messagebox.showerror("Error", "Employee ID not found") #error handling
         self.status_bar.config(text="Employee ID not found")
 
 
@@ -1134,7 +1135,7 @@ class DeleteClientWindow:
         self.master.title("Delete Client")
         self.client_data = client_data
         self.status_bar = status_bar
-
+        # Label of Client ID
         self.client_id_label = tk.Label(master, text="Client ID:")
         self.client_id_label.grid(row=0, column=0, padx=10, pady=5)
         self.client_id_entry = tk.Entry(master)
@@ -1146,9 +1147,10 @@ class DeleteClientWindow:
         client_id = self.client_id_entry.get()
         if client_id in self.client_data:
             del self.client_data[client_id]
+            #messege that will pop when saved info
             messagebox.showinfo("Success", "Client deleted successfully!")
             self.status_bar.config(text="Client deleted successfully!")
-        else:
+        else:   #error handling
             messagebox.showerror("Error", "Client ID not found")
             self.status_bar.config(text="Client ID not found")
 
@@ -1172,7 +1174,7 @@ class DeleteGuestWindow:
             del self.guest_data[guest_id]
             messagebox.showinfo("Success", "Guest deleted successfully!")
             self.status_bar.config(text="Guest deleted successfully!")
-        else:
+        else:   #error handling
             messagebox.showerror("Error", "Guest ID not found")
             self.status_bar.config(text="Guest ID not found")
 
@@ -1201,7 +1203,7 @@ class DeleteSupplierWindow:
                 self.status_bar.config(text="Supplier deleted successfully!")
                 return
 
-        messagebox.showerror("Error", "Supplier ID not found")
+        messagebox.showerror("Error", "Supplier ID not found") #error handling
         self.status_bar.config(text="Supplier ID not found")
 
 class DeleteVenueWindow:
@@ -1212,6 +1214,7 @@ class DeleteVenueWindow:
         self.status_bar = status_bar
 
         # Label and entry field for venue ID
+        # Label of Venue ID
         self.venue_id_label = tk.Label(master, text="Venue ID:")
         self.venue_id_label.grid(row=0, column=0, padx=10, pady=5)
         self.venue_id_entry = tk.Entry(master)
@@ -1229,7 +1232,7 @@ class DeleteVenueWindow:
                 messagebox.showinfo("Success", "Venue deleted successfully!")
                 self.status_bar.config(text="Venue deleted successfully!")
                 return
-
+        # error handling
         messagebox.showerror("Error", "Venue ID not found")
         self.status_bar.config(text="Venue ID not found")
 
