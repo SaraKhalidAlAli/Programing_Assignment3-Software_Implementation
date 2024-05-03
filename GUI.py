@@ -437,7 +437,7 @@ class GuestWindow:
 
         # Labels and entry fields for guest attributes
         self.name_label = tk.Label(master, text="Name:")
-        self.name_label.grid(row=0, column=0, padx=10, pady5)
+        self.name_label.grid(row=0, column=0, padx=10, pady=5)
         self.name_entry = tk.Entry(master)
         self.name_entry.grid(row=0, column=1, padx=10, pady=5)
 
