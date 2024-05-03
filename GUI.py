@@ -395,3 +395,35 @@ class ClientWindow:
         self.time_entry.delete(0, tk.END)
         self.event_id_entry.delete(0, tk.END)
 
+class DisplayClientWindow:
+    def __init__(self, master, client_data):
+        self.master = master
+        self.master.title("Display Client")
+        self.master.geometry("300x100")
+        self.client_data = client_data
+
+        # Label and entry field for event ID
+        self.event_id_label = tk.Label(master, text="Event ID:")
+        self.event_id_label.grid(row=0, column=0, padx=10, pady=5)
+        self.event_id_entry = tk.Entry(master)
+        self.event_id_entry.grid(row=0, column=1, padx=10, pady=5)
+
+        # Button to display client information
+        self.display_button = tk.Button(master, text="Display", command=self.display_client_info)
+        self.display_button.grid(row=1, columnspan=2, padx=10, pady=5)
+
+    def display_client_info(self):
+        # Retrieve event ID from entry field
+        event_id = self.event_id_entry.get()
+
+        # Check if the event ID exists in the client data
+        if event_id in self.client_data:
+            # Retrieve client information associated with the event ID
+            client_info = self.client_data[event_id]
+
+            # Display client information
+            info_str = "\n".join([f"{key}: {value}" for key, value in client_info.items()])
+            messagebox.showinfo("Client Information", info_str)
+        else:
+            # Display error message if event ID is not found
+            messagebox.showerror("Error", "Event ID not found")
