@@ -626,3 +626,71 @@ class DisplaySupplierInfoWindow:
             messagebox.showinfo("Supplier Information", info_str)
         else:
             messagebox.showerror("Error", "Supplier ID not found")
+
+
+class VenueWindow:
+    def __init__(self, master, venue_list):
+        self.master = master
+        self.master.title("Add Venue")
+        self.venue_list = venue_list
+
+        # Labels and entry fields for venue attributes
+        self.venue_id_label = tk.Label(master, text="Venue ID:")
+        self.venue_id_label.grid(row=0, column=0, padx=10, pady=5)
+        self.venue_id_entry = tk.Entry(master)
+        self.venue_id_entry.grid(row=0, column=1, padx=10, pady=5)
+
+        self.name_label = tk.Label(master, text="Name:")
+        self.name_label.grid(row=1, column=0, padx=10, pady=5)
+        self.name_entry = tk.Entry(master)
+        self.name_entry.grid(row=1, column=1, padx=10, pady=5)
+
+        self.address_label = tk.Label(master, text="Address:")
+        self.address_label.grid(row=2, column=0, padx=10, pady=5)
+        self.address_entry = tk.Entry(master)
+        self.address_entry.grid(row=2, column=1, padx=10, pady=5)
+
+        self.contact_label = tk.Label(master, text="Contact:")
+        self.contact_label.grid(row=3, column=0, padx=10, pady=5)
+        self.contact_entry = tk.Entry(master)
+        self.contact_entry.grid(row=3, column=1, padx=10, pady=5)
+
+        self.min_guests_label = tk.Label(master, text="Min Guests:")
+        self.min_guests_label.grid(row=4, column=0, padx=10, pady=5)
+        self.min_guests_entry = tk.Entry(master)
+        self.min_guests_entry.grid(row=4, column=1, padx=10, pady=5)
+
+        self.max_guests_label = tk.Label(master, text="Max Guests:")
+        self.max_guests_label.grid(row=5, column=0, padx=10, pady=5)
+        self.max_guests_entry = tk.Entry(master)
+        self.max_guests_entry.grid(row=5, column=1, padx=10, pady=5)
+
+        # Button to save venue data
+        self.save_button = tk.Button(master, text="Save", command=self.save_venue)
+        self.save_button.grid(row=6, columnspan=2, padx=10, pady=5)
+
+    def save_venue(self):
+        # Retrieve data from entry fields
+        venue_id = self.venue_id_entry.get()
+        name = self.name_entry.get()
+        address = self.address_entry.get()
+        contact = self.contact_entry.get()
+        min_guests = self.min_guests_entry.get()
+        max_guests = self.max_guests_entry.get()
+
+        # Validate input data
+        if venue_id and name and address and contact and min_guests and max_guests:
+            # Here you can handle the venue data as needed
+            # Assuming you add the venue to venue_list
+            self.venue_list.append((venue_id, name, address, contact, min_guests, max_guests))
+            messagebox.showinfo("Success", "Venue data saved successfully!")
+        else:
+            messagebox.showerror("Error", "Please fill in all fields!")
+
+        # Clear entry fields
+        self.venue_id_entry.delete(0, tk.END)
+        self.name_entry.delete(0, tk.END)
+        self.address_entry.delete(0, tk.END)
+        self.contact_entry.delete(0, tk.END)
+        self.min_guests_entry.delete(0, tk.END)
+        self.max_guests_entry.delete(0, tk.END)

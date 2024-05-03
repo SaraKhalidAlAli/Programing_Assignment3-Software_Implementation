@@ -253,3 +253,26 @@ def load_object(filename):
     """Load an object from a pickle file."""
     with open(filename, 'rb') as inp:
         return pickle.load(inp)
+
+
+# adding exmaple usages for classes
+if __name__ == "__main__":
+    # Employee example
+    employee = Employee("John Doe", "E001", "Marketing", "Manager", 50000, 35, "1985-07-12", "XP23456")
+    save_object(employee, 'employee.pkl')
+    loaded_employee = load_object('employee.pkl')
+    print(f"Loaded Employee: {loaded_employee.get_name()}, Department: {loaded_employee.get_department()}")
+
+    # Client example
+    client = Client("C002", "Alice Smith", "456 Park Ave", "555-2345", 2000)
+    save_object(client, 'client.pkl')
+    loaded_client = load_object('client.pkl')
+    print(f"Loaded Client: {loaded_client.get_name()}, Phone: {loaded_client.get_phone_number()}")
+
+    # Event example
+    event = Event("EV103", "Conference", "Tech", "2023-10-25", "09:00", 8, "Convention Center", "C002", ["G103", "G104"])
+    save_object(event, 'event.pkl')
+    loaded_event = load_object('event.pkl')
+    print(f"Loaded Event: {loaded_event.get_event_type()}, Venue: {loaded_event.get_venue()}")
+
+    # Additional examples for Guest, Venue, Supplier, and Caterer can be added following the same pattern.
