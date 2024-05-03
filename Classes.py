@@ -175,3 +175,17 @@ class DisplayEmployeeWindow:
         # Create a new window to input guest ID
         display_guest_info_window = tk.Toplevel(self.master)
         DisplayGuestInfoWindow(display_guest_info_window, self.client_data)
+
+    def open_supplier_window(self):
+        self.supplier_window = tk.Toplevel(self.master)
+        SupplierWindow(self.supplier_window, self.supplier_list, event_options=["Event 1", "Event 2"])
+    def open_display_supplier_info_window(self):
+        display_supplier_info_window = tk.Toplevel(self.master)
+        DisplaySupplierInfoWindow(display_supplier_info_window, self.supplier_list)
+
+    def open_venue_window(self):
+        venue_window = tk.Toplevel(self.master)
+        VenueWindow(venue_window, self.venue_list)
+    def open_display_venue_info_window(self):
+        display_venue_info_window = tk.Toplevel(self.master)
+        DisplayVenueInfoWindow(display_venue_info_window, self.venue_list)
