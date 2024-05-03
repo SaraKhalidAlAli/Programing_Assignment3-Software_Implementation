@@ -931,3 +931,64 @@ class ModifySupplierWindow:
                 break
         if not found:
             messagebox.showerror("Error", "Supplier not found. Please reload and try again.")
+
+
+class ModifyGuestWindow:
+    def __init__(self, master, guest_data, status_bar):
+        self.master = master
+        self.master.title("Modify Guest")
+        self.guest_data = guest_data
+        self.status_bar = status_bar
+
+        self.guest_id_label = tk.Label(master, text="Guest ID:")
+        self.guest_id_label.grid(row=0, column=0, padx=10, pady=5)
+        self.guest_id_entry = tk.Entry(master)
+        self.guest_id_entry.grid(row=0, column=1, padx=10, pady=5)
+
+        self.load_button = tk.Button(master, text="Load", command=self.load_guest)
+        self.load_button.grid(row=1, columnspan=2)
+
+        self.name_label = tk.Label(master, text="Name:")
+        self.name_entry = tk.Entry(master)
+        self.address_label = tk.Label(master, text="Address:")
+        self.address_entry = tk.Entry(master)
+        self.contact_label = tk.Label(master, text="Contact Details:")
+        self.contact_entry = tk.Entry(master)
+
+        self.save_button = tk.Button(master, text="Save", command=self.save_guest)
+    def load_guest(self):
+        guest_id = self.guest_id_entry.get()
+        guest = self.guest_data.get(guest_id)
+        if guest:
+            self.name_entry.insert(0, guest['Name'])
+            self.address_entry.insert(0, guest['Address'])
+            self.contact_entry.insert(0, guest['Contact Details'])
+            self.display_guest_fields()
+        else:
+            messagebox.showerror("Error", "Guest ID not found")
+    def display_guest_fields(self):
+        self.name_label.grid(row=2, column=0)
+        self.name_entry.grid(row=2, column=1)
+        self.address_label.grid(row=3, column=0)
+        self.address_entry.grid(row=3, column=1)
+        self.contact_label.grid(row=4, column=0)
+        self.contact_entry.grid(row=4, column=1)
+        self.save_button.grid(row=5, columnspan=2)
+    def save_guest(self):
+        guest_id = self.guest_id_entry.get()
+        new_name = self.name_entry.get()
+        new_address = self.address_entry.get()
+        new_contact = self.contact_entry.get()
+        if not new_name or not new_address or not new_contact:
+            messagebox.showerror("Error", "All fields must be filled out.")
+            return
+        if guest_id in self.guest_data:
+            self.guest_data[guest_id] = {
+                'Name': new_name,
+                'Address': new_address,
+                'Contact Details': new_contact
+            }
+            messagebox.showinfo("Success", "Guest updated successfully!")
+            self.status_bar.config(text="Updated guest details successfully.")
+        else:
+            messagebox.showerror("Error", "Guest not found. Please reload and try again.")
