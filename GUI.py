@@ -695,4 +695,36 @@ class VenueWindow:
         self.min_guests_entry.delete(0, tk.END)
         self.max_guests_entry.delete(0, tk.END)
 
+class DisplayVenueInfoWindow:
+    def __init__(self, master, venue_list):
+        self.master = master
+        self.master.title("Display Venue Info")
+        self.venue_list = venue_list
 
+        # Label and entry field for venue ID
+        self.venue_id_label = tk.Label(master, text="Venue ID:")
+        self.venue_id_label.grid(row=0, column=0, padx=10, pady=5)
+        self.venue_id_entry = tk.Entry(master)
+        self.venue_id_entry.grid(row=0, column=1, padx=10, pady=5)
+
+        # Button to display venue information
+        self.display_button = tk.Button(master, text="Display", command=self.display_venue_info)
+        self.display_button.grid(row=1, columnspan=2, padx=10, pady=5)
+
+    def display_venue_info(self):
+        # Retrieve venue ID from entry field
+        venue_id = self.venue_id_entry.get()
+
+        # Search for venue in the venue list
+        found_venue = None
+        for venue in self.venue_list:
+            if venue[0] == venue_id:
+                found_venue = venue
+                break
+
+        if found_venue:
+            # Display venue information
+            info_str = f"Name: {found_venue[1]}\nAddress: {found_venue[2]}\nContact: {found_venue[3]}\nMin Guests: {found_venue[4]}\nMax Guests: {found_venue[5]}"
+            messagebox.showinfo("Venue Information", info_str)
+        else:
+            messagebox.showerror("Error", "Venue ID not found")
