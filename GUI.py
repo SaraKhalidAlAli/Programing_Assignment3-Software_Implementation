@@ -744,3 +744,65 @@ class DisplayVenueInfoWindow:
         else:
             messagebox.showerror("Error", "Venue ID not found")
 
+class ModifyEmployeeWindow:
+    def __init__(self, master, employee_list, status_bar):
+        ###
+
+
+        self.master = master
+        self.master.title("Modify Employee")
+        self.employee_list = employee_list
+        self.status_bar = status_bar
+        # Widgets to input and display employee ID
+        self.emp_id_label = tk.Label(master, text="Employee ID:")
+        self.emp_id_label.grid(row=0, column=0, padx=10, pady=5)
+        self.emp_id_entry = tk.Entry(master)
+        self.emp_id_entry.grid(row=0, column=1, padx=10, pady=5)
+        # Button to load employee data
+        self.load_button = tk.Button(master, text="Load", command=self.load_employee)
+        self.load_button.grid(row=1, column=0, columnspan=2)
+        # Widgets for modifying employee data (hidden until load is successful)
+        self.name_label = tk.Label(master, text="Name:")
+        self.name_entry = tk.Entry(master)
+        self.job_title_label = tk.Label(master, text="Job Title:")
+        self.job_title_entry = tk.Entry(master)
+        # Button to save modifications
+        self.save_button = tk.Button(master, text="Save", command=self.save_employee)
+
+    def load_employee(self):
+        emp_id = self.emp_id_entry.get()
+        for employee in self.employee_list:
+            if employee[1] == emp_id:
+                self.name_entry.insert(0, employee[0])
+                self.job_title_entry.insert(0, employee[2])
+                self.display_employee_fields()
+                return
+        messagebox.showerror("Error", "Employee ID not found")
+    def display_employee_fields(self):
+        self.name_label.grid(row=2, column=0)
+        self.name_entry.grid(row=2, column=1)
+        self.job_title_label.grid(row=3, column=0)
+        self.job_title_entry.grid(row=3, column=1)
+        self.save_button.grid(row=4, columnspan=2)
+    def save_employee(self):
+        emp_id = self.emp_id_entry.get()
+        new_name = self.name_entry.get()
+        new_job_title = self.job_title_entry.get()
+
+        if not new_name or not new_job_title:
+            messagebox.showerror("Error", "All fields must be filled out.")
+            return
+
+        # Find and update the employee
+        for index, employee in enumerate(self.employee_list):
+            if employee[1] == emp_id:
+                # Update the employee details
+                updated_employee = (new_name, emp_id, new_job_title)
+                self.employee_list[index] = updated_employee
+                messagebox.showinfo("Success", "Employee updated successfully!")
+                self.status_bar.config(text="Updated employee details successfully.")
+                self.master.destroy()  # Optionally close the window
+                return
+
+        # If not found, display an error message
+        messagebox.showerror("Error", "Employee not found. Please reload and try again.")
