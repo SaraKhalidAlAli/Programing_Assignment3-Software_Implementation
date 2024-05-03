@@ -1,191 +1,241 @@
-import tkinter as tk
-from tkinter import messagebox
-import pickle
+#adding the classes
 
-class MainWindow:
-    def __init__(self, master):
-        self.master = master
-        self.master.title("Employee Management System")
+class Employee:
+    #attributes for employee
+    def __init__(self, name, emp_id, department, job_title, basic_salary, age, date_of_birth, passport_details):
+        self.name = name
+        self.emp_id = emp_id
+        self.department = department
+        self.job_title = job_title
+        self.basic_salary = basic_salary
+        self.age = age
+        self.date_of_birth = date_of_birth
+        self.passport_details = passport_details
 
-        self.employee_list = self.load_data('employees.pkl')
-        self.client_data = self.load_data('clients.pkl')
-        self.supplier_list = self.load_data('suppliers.pkl')
-        self.venue_list = self.load_data('venues.pkl')
-
-        # Buttons for different options
-        self.employee_button = tk.Button(master, text="Add Employee", command=self.open_employee_window)
-        self.employee_button.grid(row=0, column=0, padx=10, pady=5, sticky="ew")
-        self.display_employee_button = tk.Button(master, text="Display Employees", command=self.open_display_employee_window)
-        self.display_employee_button.grid(row=0, column=1, padx=10, pady=5, sticky="ew")
-
-        self.client_button = tk.Button(master, text="Add Client", command=self.open_client_window)
-        self.client_button.grid(row=1, column=0, padx=10, pady=5, sticky="ew")
-        self.display_client_button = tk.Button(master, text="Display Client Event Info", command=self.open_display_client_window)
-        self.display_client_button.grid(row=1, column=1, padx=10, pady=5, sticky="ew")
-
-        self.guest_button = tk.Button(master, text="Add Guest", command=self.open_guest_window)
-        self.guest_button.grid(row=2, column=0, padx=10, pady=5, sticky="ew")
-        self.display_guest_info_button = tk.Button(master, text="Display Guest's Info", command=self.open_display_guest_info_window)
-        self.display_guest_info_button.grid(row=2, column=1, padx=10, pady=5, sticky="ew")
-
-        self.supplier_button = tk.Button(master, text="Add Supplier", command=self.open_supplier_window)
-        self.supplier_button.grid(row=3, column=0, padx=10, pady=5, sticky="ew")
-        self.display_supplier_info_button = tk.Button(master, text="Display Supplier's Info", command=self.open_display_supplier_info_window)
-        self.display_supplier_info_button.grid(row=3, column=1, padx=10, pady=5, sticky="ew")
-
-        self.venue_button = tk.Button(master, text="Add Venue", command=self.open_venue_window)
-        self.venue_button.grid(row=4, column=0, padx=10, pady=5, sticky="ew")
-        self.display_venue_info_button = tk.Button(master, text="Display Venue Info", command=self.open_display_venue_info_window)
-        self.display_venue_info_button.grid(row=4, column=1, padx=10, pady=5, sticky="ew")
-
-        self.status_bar = tk.Label(master, text="", bd=1, relief=tk.SUNKEN, anchor=tk.W)
-        self.status_bar.grid(row=5, column=0, sticky=tk.W + tk.E)
-
-    def load_data(self, filename):
-        try:
-            with open(filename, 'rb') as f:
-                return pickle.load(f)
-        except (FileNotFoundError, EOFError, pickle.UnpicklingError):
-            return []
-
-    def save_data(self, data, filename):
-        try:
-            with open(filename, 'wb') as f:
-                pickle.dump(data, f)
-        except pickle.PicklingError:
-            messagebox.showerror("Error", "Failed to save data.")
-
-    def open_employee_window(self):
-        employee_window = tk.Toplevel(self.master)
-        EmployeeWindow(employee_window, self.employee_list, self.save_data)
-
-    def open_display_employee_window(self):
-        display_employee_window = tk.Toplevel(self.master)
-        DisplayEmployeeWindow(display_employee_window, self.employee_list)
-
-    def open_client_window(self):
-        client_window = tk.Toplevel(self.master)
-        ClientWindow(client_window, self.client_data, self.save_data)
-
-    def open_display_client_window(self):
-        display_client_window = tk.Toplevel(self.master)
-        DisplayClientWindow(display_client_window, self.client_data)
-
-    def open_guest_window(self):
-        guest_window = tk.Toplevel(self.master)
-        GuestWindow(guest_window, self.client_data, self.save_data)
-
-    def open_display_guest_info_window(self):
-        display_guest_info_window = tk.Toplevel(self.master)
-        DisplayGuestInfoWindow(display_guest_info_window, self.client_data)
-
-    def open_supplier_window(self):
-        supplier_window = tk.Toplevel(self.master)
-        SupplierWindow(supplier_window, self.supplier_list, ["Event 1", "Event 2"], self.save_data)
-
-    def open_display_supplier_info_window(self):
-        display_supplier_info_window = tk.Toplevel(self.master)
-        DisplaySupplierInfoWindow(display_supplier_info_window, self.supplier_list)
-
-    def open_venue_window(self):
-        venue_window = tk.Toplevel(self.master)
-        VenueWindow(venue_window, self.venue_list, self.save_data)
-
-    def open_display_venue_info_window(self):
-        display_venue_info_window = tk.Toplevel(self.master)
-        DisplayVenueInfoWindow(display_venue_info_window, self.venue_list)
+    # Getter, setter methods:
+    def get_name(self):
+        return self.name
+    def set_name(self, name):
+        self.name = name
+    def get_emp_id(self):
+        return self.emp_id
+    def set_emp_id(self, emp_id):
+        self.emp_id = emp_id
+    def get_department(self):
+        return self.department
+    def set_department(self, department):
+        self.department = department
+    def get_job_title(self):
+        return self.job_title
+    def set_job_title(self, job_title):
+        self.job_title = job_title
+    def get_basic_salary(self):
+        return self.basic_salary
+    def set_basic_salary(self, basic_salary):
+        self.basic_salary = basic_salary
+    def get_age(self):
+        return self.age
+    def set_age(self, age):
+        self.age = age
+    def get_date_of_birth(self):
+        return self.date_of_birth
+    def set_date_of_birth(self, date_of_birth):
+        self.date_of_birth = date_of_birth
+    def get_passport_details(self):
+        return self.passport_details
+    def set_passport_details(self, passport_details):
+        self.passport_details = passport_details
 
 
-class EmployeeWindow:
-    def __init__(self, master, employee_list, save_data):
-        self.master = master
-        self.master.title("Add Employee")
-        self.employee_list = employee_list
-        self.save_data = save_data  # Save function passed from MainWindow
+class Client:
+    #attributes for the clients and initializing
+    def __init__(self, client_id, name, address, phone_number, budget):
+        self.client_id = client_id
+        self.name = name
+        self.address = address
+        self.phone_number = phone_number
+        self.budget = budget
 
-        # Labels and entry fields for attributes
-        self.name_label = tk.Label(master, text="Name:")
-        self.name_label.grid(row=0, column=0, padx=10, pady=5)
-        self.name_entry = tk.Entry(master)
-        self.name_entry.grid(row=0, column=1, padx=10, pady=5)
+    # Getter, setter methods:
+    def get_client_id(self):
+        return self.client_id
+    def set_client_id(self, client_id):
+        self.client_id = client_id
+    def get_name(self):
+        return self.name
+    def set_name(self, name):
+        self.name = name
+    def get_address(self):
+        return self.address
+    def set_address(self, address):
+        self.address = address
+    def get_phone_number(self):
+        return self.phone_number
+    def set_phone_number(self, phone_number):
+        self.phone_number = phone_number
+    def get_budget(self):
+        return self.budget
+    def set_budget(self, budget):
+        self.budget = budget
 
-        self.emp_id_label = tk.Label(master, text="Employee ID:")
-        self.emp_id_label.grid(row=1, column=0, padx=10, pady=5)
-        self.emp_id_entry = tk.Entry(master)
-        self.emp_id_entry.grid(row=1, column=1, padx=10, pady=5)
 
-        self.job_title_label = tk.Label(master, text="Job Title:")
-        self.job_title_label.grid(row=2, column=0, padx=10, pady=5)
-        self.job_title_var = tk.StringVar(master)
-        self.job_title_var.set("Manager")  # Default job title
-        self.job_title_optionmenu = tk.OptionMenu(master, self.job_title_var, "Manager", "Salesperson")
-        self.job_title_optionmenu.grid(row=2, column=1, padx=10, pady=5)
+class Event:
+    #attributes for the Event and initializing it
+    def __init__(self, event_id, event_type, theme, date, time, duration, venue, client_id, guest_list):
+        self.event_id = event_id
+        self.event_type = event_type
+        self.theme = theme
+        self.date = date
+        self.time = time
+        self.duration = duration
+        self.venue = venue
+        self.client_id = client_id
+        self.guest_list = guest_list
 
-        # Button to save employee data
-        self.save_button = tk.Button(master, text="Save", command=self.save_employee)
-        self.save_button.grid(row=3, columnspan=2, padx=10, pady=5)
+    # Getter, setter methods:
+    def get_event_id(self):
+        return self.event_id
+    def set_event_id(self, event_id):
+        self.event_id = event_id
+    def get_event_type(self):
+        return self.event_type
+    def set_event_type(self, event_type):
+        self.event_type = event_type
+    def get_theme(self):
+        return self.theme
+    def set_theme(self, theme):
+        self.theme = theme
+    def get_date(self):
+        return self.date
+    def set_date(self, date):
+        self.date = date
+    def get_time(self):
+        return self.time
+    def set_time(self, time):
+        self.time = time
+    def get_duration(self):
+        return self.duration
+    def set_duration(self, duration):
+        self.duration = duration
+    def get_venue(self):
+        return self.venue
+    def set_venue(self, venue):
+        self.venue = venue
+    def get_client_id(self):
+        return self.client_id
+    def set_client_id(self, client_id):
+        self.client_id = client_id
+    def get_guest_list(self):
+        return self.guest_list
+    def set_guest_list(self, guest_list):
+        self.guest_list = guest_list
 
-    def save_employee(self):
-        name = self.name_entry.get()
-        try:
-            emp_id = int(self.emp_id_entry.get())  # Validate emp_id as integer
-            if name and emp_id:
-                self.employee_list.append((name, emp_id, self.job_title_var.get()))
-                self.save_data(self.employee_list, 'employees.pkl')  # Save the updated list
-                messagebox.showinfo("Success", "Employee data saved successfully!")
-                self.name_entry.delete(0, tk.END)
-                self.emp_id_entry.delete(0, tk.END)
-            else:
-                messagebox.showerror("Error", "Please fill in all fields!")
-        except ValueError:
-            messagebox.showerror("Error", "Invalid input for Employee ID. Please enter a valid integer.")
+class Guest:
+    #attributes for the Guest and initializing it
+    def __init__(self, guest_id, name, address, contact_details):
+        self.guest_id = guest_id
+        self.name = name
+        self.address = address
+        self.contact_details = contact_details
 
-class DisplayEmployeeWindow:
-    def __init__(self, master, employee_list):
-        self.master = master
-        self.master.title("Display Employee")
-        self.employee_list = employee_list
+    # Getter , setter methods:
+    def get_guest_id(self):
+        return self.guest_id
+    def set_guest_id(self, guest_id):
+        self.guest_id = guest_id
+    def get_name(self):
+        return self.name
+    def set_name(self, name):
+        self.name = name
+    def get_address(self):
+        return self.address
+    def set_address(self, address):
+        self.address = address
+    def get_contact_details(self):
+        return self.contact_details
+    def set_contact_details(self, contact_details):
+        self.contact_details = contact_details
 
-        # Label and entry field for employee ID
-        self.emp_id_label = tk.Label(master, text="Employee ID:")
-        self.emp_id_label.grid(row=0, column=0, padx=10, pady=5)
-        self.emp_id_entry = tk.Entry(master)
-        self.emp_id_entry.grid(row=0, column=1, padx=10, pady=5)
+class Venue:
+    # attributes for the Venue and initializing it
+    def __init__(self, venue_id, name, address, contact, min_guests, max_guests):
+        self.venue_id = venue_id
+        self.name = name
+        self.address = address
+        self.contact = contact
+        self.min_guests = min_guests
+        self.max_guests = max_guests
 
-        # Button to display employee information
-        self.display_button = tk.Button(master, text="Display", command=self.display_employee_info)
-        self.display_button.grid(row=1, columnspan=2, padx=10, pady=5)
+    # Getter, setter methods:
+    def get_venue_id(self):
+        return self.venue_id
+    def set_venue_id(self, venue_id):
+        self.venue_id = venue_id
+    def get_name(self):
+        return self.name
+    def set_name(self, name):
+        self.name = name
+    def get_address(self):
+        return self.address
+    def set_address(self, address):
+        self.address = address
+    def get_contact(self):
+        return self.contact
+    def set_contact(self, contact):
+        self.contact = contact
+    def get_min_guests(self):
+        return self.min_guests
+    def set_min_guests(self, min_guests):
+        self.min_guests = min_guests
+    def get_max_guests(self):
+        return self.max_guests
+    def set_max_guests(self, max_guests):
+        self.max_guests = max_guests
 
-    def display_employee_info(self):
-        emp_id = self.emp_id_entry.get()
-        try:
-            emp_id = int(emp_id)
-            found_employee = next((emp for emp in self.employee_list if emp[1] == emp_id), None)
-            if found_employee:
-                info_str = f"Name: {found_employee[0]}\nEmployee ID: {found_employee[1]}\nJob Title: {found_employee[2]}"
-                messagebox.showinfo("Employee Information", info_str)
-            else:
-                messagebox.showerror("Error", "Employee ID not found")
-        except ValueError:
-            messagebox.showerror("Error", "Invalid input for Employee ID. Please enter a valid integer.")
-    def open_guest_window(self):
-        guest_window = tk.Toplevel(self.master)
-        GuestWindow(guest_window, self.client_data)  # Pass client_data dictionary
-    def open_display_guest_info_window(self):
-        # Create a new window to input guest ID
-        display_guest_info_window = tk.Toplevel(self.master)
-        DisplayGuestInfoWindow(display_guest_info_window, self.client_data)
+class Supplier:
+    # attributes for the Supplier and initializing it
+    def __init__(self, supplier_id, name, address, contact_details):
+        self.supplier_id = supplier_id
+        self.name = name
+        self.address = address
+        self.contact_details = contact_details
 
-    def open_supplier_window(self):
-        self.supplier_window = tk.Toplevel(self.master)
-        SupplierWindow(self.supplier_window, self.supplier_list, event_options=["Event 1", "Event 2"])
-    def open_display_supplier_info_window(self):
-        display_supplier_info_window = tk.Toplevel(self.master)
-        DisplaySupplierInfoWindow(display_supplier_info_window, self.supplier_list)
+    # Getter, setter methods:
+    def get_supplier_id(self):
+        return self.supplier_id
+    def set_supplier_id(self, supplier_id):
+        self.supplier_id = supplier_id
+    def get_name(self):
+        return self.name
+    def set_name(self, name):
+        self.name = name
+    def get_address(self):
+        return self.address
+    def set_address(self, address):
+        self.address = address
+    def get_contact_details(self):
+        return self.contact_details
+    def set_contact_details(self, contact_details):
+        self.contact_details = contact_details
 
-    def open_venue_window(self):
-        venue_window = tk.Toplevel(self.master)
-        VenueWindow(venue_window, self.venue_list)
-    def open_display_venue_info_window(self):
-        display_venue_info_window = tk.Toplevel(self.master)
-        DisplayVenueInfoWindow(display_venue_info_window, self.venue_list)
+class Caterer(Supplier):
+    # attributes for the Caterer and initializing it
+    def __init__(self, supplier_id, name, address, contact_details, menu, min_guests, max_guests):
+        super().__init__(supplier_id, name, address, contact_details)
+        self.menu = menu
+        self.min_guests = min_guests
+        self.max_guests = max_guests
+
+    # Getter, setter methods to Caterer:
+    def get_menu(self):
+        return self.menu
+    def set_menu(self, menu):
+        self.menu = menu
+    def get_min_guests(self):
+        return self.min_guests
+    def set_min_guests(self, min_guests):
+        self.min_guests = min_guests
+    def get_max_guests(self):
+        return self.max_guests
+    def set_max_guests(self, max_guests):
+        self.max_guests = max_guests
