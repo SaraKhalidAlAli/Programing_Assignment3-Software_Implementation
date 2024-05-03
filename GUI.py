@@ -251,8 +251,7 @@ class EmployeeWindow:
         # Clear entry fields
         self.name_entry.delete(0, tk.END)
         self.emp_id_entry.delete(0, tk.END)
-'''
-'''
+
 class DisplayEmployeeWindow:
     def __init__(self, master, employee_list):
         self.master = master
@@ -285,10 +284,10 @@ class DisplayEmployeeWindow:
             info_str = f"Name: {found_employee[0]}\nEmployee ID: {found_employee[1]}\nJob Title: {found_employee[2]}"
             messagebox.showinfo("Employee Information", info_str)
         else:
-            messagebox.showerror("Error", "Employee ID not found")'''
+            messagebox.showerror("Error", "Employee ID not found")
 
 
-'''class ClientWindow:
+class ClientWindow:
     def __init__(self, master, client_data):
         self.master = master
         self.master.title("Add Client")
@@ -355,3 +354,44 @@ class DisplayEmployeeWindow:
         # Button to save client data
         self.save_button = tk.Button(master, text="Save", command=self.save_client)
         self.save_button.grid(row=10, columnspan=2, padx=10, pady=5)
+    def save_client(self):
+        # Retrieve data from entry fields
+        client_id = self.client_id_entry.get()
+        name = self.name_entry.get()
+        address = self.address_entry.get()
+        phone_number = self.phone_number_entry.get()
+        budget = self.budget_entry.get()
+        event_type = self.event_type_var.get()
+        date = self.date_entry.get()
+        time = self.time_entry.get()
+        venue = self.venue_var.get()
+        event_id = self.event_id_entry.get()
+
+        # Validate input data
+        if client_id and name and address and phone_number and budget and event_type and date and time and venue and event_id:
+            # Save data to the client data dictionary
+            self.client_data[event_id] = {
+                "Client ID": client_id,
+                "Name": name,
+                "Address": address,
+                "Phone Number": phone_number,
+                "Budget": budget,
+                "Event Type": event_type,
+                "Date": date,
+                "Time": time,
+                "Venue": venue
+            }
+            messagebox.showinfo("Success", "Client data saved successfully!")
+        else:
+            messagebox.showerror("Error", "Please fill in all fields!")
+
+        # Clear entry fields
+        self.client_id_entry.delete(0, tk.END)
+        self.name_entry.delete(0, tk.END)
+        self.address_entry.delete(0, tk.END)
+        self.phone_number_entry.delete(0, tk.END)
+        self.budget_entry.delete(0, tk.END)
+        self.date_entry.delete(0, tk.END)
+        self.time_entry.delete(0, tk.END)
+        self.event_id_entry.delete(0, tk.END)
+
