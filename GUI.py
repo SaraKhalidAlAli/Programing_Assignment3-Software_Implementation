@@ -1201,3 +1201,13 @@ class DeleteVenueWindow:
 
         messagebox.showerror("Error", "Venue ID not found")
         self.status_bar.config(text="Venue ID not found")
+
+
+# Create main window
+root = tk.Tk()
+
+#initializing the MainWindow
+app = MainWindow(root)
+
+# Runnin the application
+root.mainloop()
