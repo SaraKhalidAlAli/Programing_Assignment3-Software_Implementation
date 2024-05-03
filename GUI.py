@@ -427,3 +427,67 @@ class DisplayClientWindow:
         else:
             # Display error message if event ID is not found
             messagebox.showerror("Error", "Event ID not found")
+
+
+class GuestWindow:
+    def __init__(self, master, client_data):
+        self.master = master
+        self.master.title("Add Guest")
+        self.client_data = client_data
+
+        # Labels and entry fields for guest attributes
+        self.name_label = tk.Label(master, text="Name:")
+        self.name_label.grid(row=0, column=0, padx=10, pady5)
+        self.name_entry = tk.Entry(master)
+        self.name_entry.grid(row=0, column=1, padx=10, pady=5)
+
+        self.address_label = tk.Label(master, text="Address:")
+        self.address_label.grid(row=1, column=0, padx=10, pady=5)
+        self.address_entry = tk.Entry(master)
+        self.address_entry.grid(row=1, column=1, padx=10, pady=5)
+
+        self.phone_number_label = tk.Label(master, text="Phone Number:")
+        self.phone_number_label.grid(row=2, column=0, padx=10, pady=5)
+        self.phone_number_entry = tk.Entry(master)
+        self.phone_number_entry.grid(row=2, column=1, padx=10, pady=5)
+
+        self.email_label = tk.Label(master, text="Email:")
+        self.email_label.grid(row=3, column=0, padx=10, pady=5)
+        self.email_entry = tk.Entry(master)
+        self.email_entry.grid(row=3, column=1, padx=10, pady=5)
+
+        # Dropdown menu to select the event
+        self.event_label = tk.Label(master, text="Event:")
+        self.event_label.grid(row=4, column=0, padx=10, pady=5)
+        self.event_var = tk.StringVar(master)
+
+        # Populate event options if client data is available
+        self.event_options = list(client_data.keys()) if client_data else ["No Events Available"]
+        self.event_var.set(self.event_options[0])  # Set default event
+        self.event_optionmenu = tk.OptionMenu(master, self.event_var, *self.event_options)
+        self.event_optionmenu.grid(row=4, column=1, padx=10, pady=5)
+
+        # Button to save guest data
+        self.save_button = tk.Button(master, text="Save", command=self.save_guest)
+        self.save_button.grid(row=5, columnspan=2, padx=10, pady=5)
+
+    def save_guest(self):
+        # Retrieve data from entry fields
+        name = self.name_entry.get()
+        address = self.address_entry.get()
+        phone_number = self.phone_number_entry.get()
+        email = self.email_entry.get()
+        event_id = self.event_var.get()
+
+        # Validate input data
+        if name and address and phone_number and email:
+            # Here you would save the guest data along with the associated event
+            messagebox.showinfo("Success", "Guest data saved successfully!")
+        else:
+            messagebox.showerror("Error", "Please fill in all fields!")
+
+        # Clear entry fields
+        self.name_entry.delete(0, tk.END)
+        self.address_entry.delete(0, tk.END)
+        self.phone_number_entry.delete(0, tk.END)
+        self.email_entry.delete(0, tk.END)
