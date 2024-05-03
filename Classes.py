@@ -281,5 +281,4 @@ if __name__ == "__main__":
     save_object(event, 'event.pkl')
     loaded_event = load_object('event.pkl')
     print(f"Loaded Event: {loaded_event.get_event_type()}, Venue: {loaded_event.get_venue()}")
-
     # Additional examples for Guest, Venue, Supplier, and Caterer can be added following the same pattern.
