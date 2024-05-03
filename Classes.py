@@ -168,3 +168,10 @@ class DisplayEmployeeWindow:
                 messagebox.showerror("Error", "Employee ID not found")
         except ValueError:
             messagebox.showerror("Error", "Invalid input for Employee ID. Please enter a valid integer.")
+    def open_guest_window(self):
+        guest_window = tk.Toplevel(self.master)
+        GuestWindow(guest_window, self.client_data)  # Pass client_data dictionary
+    def open_display_guest_info_window(self):
+        # Create a new window to input guest ID
+        display_guest_info_window = tk.Toplevel(self.master)
+        DisplayGuestInfoWindow(display_guest_info_window, self.client_data)
