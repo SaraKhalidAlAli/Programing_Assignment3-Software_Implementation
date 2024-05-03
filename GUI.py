@@ -876,3 +876,58 @@ class ModifyClientWindow:
             self.status_bar.config(text="Updated client details successfully.")
         else:
             messagebox.showerror("Error", "Client not found. Please reload and try again.")
+
+class ModifySupplierWindow:
+    def __init__(self, master, supplier_list, status_bar):
+        self.master = master
+        self.master.title("Modify Supplier")
+        self.supplier_list = supplier_list
+        self.status_bar = status_bar
+
+        self.supplier_id_label = tk.Label(master, text="Supplier ID:")
+        self.supplier_id_label.grid(row=0, column=0, padx=10, pady=5)
+        self.supplier_id_entry = tk.Entry(master)
+        self.supplier_id_entry.grid(row=0, column=1, padx=10, pady=5)
+
+        self.load_button = tk.Button(master, text="Load", command=self.load_supplier)
+        self.load_button.grid(row=1, columnspan=2)
+
+        self.name_label = tk.Label(master, text="Name:")
+        self.name_entry = tk.Entry(master)
+        self.product_label = tk.Label(master, text="Product:")
+        self.product_entry = tk.Entry(master)
+
+        self.save_button = tk.Button(master, text="Save", command=self.save_supplier)
+    def load_supplier(self):
+        supplier_id = self.supplier_id_entry.get()
+        for supplier in self.supplier_list:
+            if supplier[0] == supplier_id:
+                self.name_entry.insert(0, supplier[1])
+                self.product_entry.insert(0, supplier[2])
+                self.display_supplier_fields()
+                return
+        messagebox.showerror("Error", "Supplier ID not found")
+    def display_supplier_fields(self):
+        self.name_label.grid(row=2, column=0)
+        self.name_entry.grid(row=2, column=1)
+        self.product_label.grid(row=3, column=0)
+        self.product_entry.grid(row=3, column=1)
+        self.save_button.grid(row=4, columnspan=2)
+    def save_supplier(self):
+        supplier_id = self.supplier_id_entry.get()
+        new_name = self.name_entry.get()
+        new_product = self.product_entry.get()
+
+        if not new_name or not new_product:
+            messagebox.showerror("Error", "All fields must be filled out.")
+            return
+        found = False
+        for index, supplier in enumerate(self.supplier_list):
+            if supplier[0] == supplier_id:
+                self.supplier_list[index] = (supplier_id, new_name, new_product)
+                messagebox.showinfo("Success", "Supplier updated successfully!")
+                self.status_bar.config(text="Updated supplier details successfully.")
+                found = True
+                break
+        if not found:
+            messagebox.showerror("Error", "Supplier not found. Please reload and try again.")
