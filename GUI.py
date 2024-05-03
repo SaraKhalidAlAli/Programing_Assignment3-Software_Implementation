@@ -68,3 +68,20 @@ class MainWindow:
         # Status bar for feedback
         self.status_bar = tk.Label(master, text="", bd=1, relief=tk.SUNKEN, anchor=tk.W)
         self.status_bar.grid(row=6, column=0, columnspan=3, sticky=tk.W + tk.E)
+
+    # Methods for opening each window should be defined similarly to existing methods
+    def open_delete_employee_window(self):
+        delete_employee_window = tk.Toplevel(self.master)
+        DeleteEmployeeWindow(delete_employee_window, self.employee_list, self.status_bar)
+    def open_delete_client_window(self):
+        delete_client_window = tk.Toplevel(self.master)
+        DeleteClientWindow(delete_client_window, self.client_data, self.status_bar)
+    def open_delete_supplier_window(self):
+        delete_supplier_window = tk.Toplevel(self.master)
+        DeleteSupplierWindow(delete_supplier_window, self.supplier_list, self.status_bar)
+    def open_delete_guest_window(self):
+        delete_guest_window = tk.Toplevel(self.master)
+        DeleteGuestWindow(delete_guest_window, self.guest_data, self.status_bar)
+    def open_delete_venue_window(self):
+        delete_venue_window = tk.Toplevel(self.master)
+        DeleteVenueWindow(delete_venue_window, self.venue_list, self.status_bar)
