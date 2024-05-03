@@ -342,31 +342,32 @@ class ClientWindow:
         self.client_data = client_data
 
         # Labels and entry fields for client attributes
+        # Label for input of Client ID
         self.client_id_label = tk.Label(master, text="Client ID:")
         self.client_id_label.grid(row=0, column=0, padx=10, pady=5)
         self.client_id_entry = tk.Entry(master)
         self.client_id_entry.grid(row=0, column=1, padx=10, pady=5)
-
+        # Label for input of Name
         self.name_label = tk.Label(master, text="Name:")
         self.name_label.grid(row=1, column=0, padx=10, pady=5)
         self.name_entry = tk.Entry(master)
         self.name_entry.grid(row=1, column=1, padx=10, pady=5)
-
+        # Label for input of Address
         self.address_label = tk.Label(master, text="Address:")
         self.address_label.grid(row=2, column=0, padx=10, pady=5)
         self.address_entry = tk.Entry(master)
         self.address_entry.grid(row=2, column=1, padx=10, pady=5)
-
+        # Label for input of Phone Number
         self.phone_number_label = tk.Label(master, text="Phone Number:")
         self.phone_number_label.grid(row=3, column=0, padx=10, pady=5)
         self.phone_number_entry = tk.Entry(master)
         self.phone_number_entry.grid(row=3, column=1, padx=10, pady=5)
-
+        # Label for input of Budget
         self.budget_label = tk.Label(master, text="Budget:")
         self.budget_label.grid(row=4, column=0, padx=10, pady=5)
         self.budget_entry = tk.Entry(master)
         self.budget_entry.grid(row=4, column=1, padx=10, pady=5)
-
+        # Label for input of Event Type with four options
         # Options for event types
         self.event_type_label = tk.Label(master, text="Event Type:")
         self.event_type_label.grid(row=5, column=0, padx=10, pady=5)
@@ -375,17 +376,19 @@ class ClientWindow:
         self.event_type_optionmenu = tk.OptionMenu(master, self.event_type_var, "Wedding", "Birthday", "Themed Party", "Graduation")
         self.event_type_optionmenu.grid(row=5, column=1, padx=10, pady=5)
 
+        #inputs for he actual event
+        # Label for input of Date of the eent wanted
         self.date_label = tk.Label(master, text="Date:")
         self.date_label.grid(row=6, column=0, padx=10, pady=5)
         self.date_entry = tk.Entry(master)
         self.date_entry.grid(row=6, column=1, padx=10, pady=5)
-
+        # Label for input of Tiem of the event
         self.time_label = tk.Label(master, text="Time:")
         self.time_label.grid(row=7, column=0, padx=10, pady=5)
         self.time_entry = tk.Entry(master)
         self.time_entry.grid(row=7, column=1, padx=10, pady=5)
 
-        # Options for venue
+        #Label for input of Venue: 3 Options for venue
         self.venue_label = tk.Label(master, text="Venue:")
         self.venue_label.grid(row=8, column=0, padx=10, pady=5)
         self.venue_var = tk.StringVar(master)
