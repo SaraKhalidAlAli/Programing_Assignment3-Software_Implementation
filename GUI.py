@@ -491,3 +491,34 @@ class GuestWindow:
         self.address_entry.delete(0, tk.END)
         self.phone_number_entry.delete(0, tk.END)
         self.email_entry.delete(0, tk.END)
+
+class DisplayGuestInfoWindow:
+    def __init__(self, master, client_data):
+        self.master = master
+        self.client_data = client_data
+
+        # Label and entry field for guest ID
+        self.guest_id_label = tk.Label(master, text="Guest ID:")
+        self.guest_id_label.grid(row=0, column=0, padx=10, pady=5)
+        self.guest_id_entry = tk.Entry(master)
+        self.guest_id_entry.grid(row=0, column=1, padx=10, pady=5)
+
+        # Button to display guest info
+        self.display_button = tk.Button(master, text="Display", command=self.display_guest_info)
+        self.display_button.grid(row=1, columnspan=2, padx=10, pady=5)
+
+    def display_guest_info(self):
+        # Retrieve guest ID from entry field
+        guest_id = self.guest_id_entry.get()
+
+        # Check if the guest ID exists in the client data
+        if guest_id in self.client_data:
+            # Retrieve guest information associated with the guest ID
+            guest_info = self.client_data[guest_id]
+
+            # Display guest information
+            info_str = "\n".join([f"{key}: {value}" for key, value in guest_info.items()])
+            messagebox.showinfo("Guest Information", info_str)
+        else:
+            # Display error message if guest ID is not found
+            messagebox.showerror("Error", "Guest ID not found")
