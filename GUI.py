@@ -592,3 +592,4 @@ class SupplierWindow:
         self.phone_number_entry.delete(0, tk.END)
         self.email_entry.delete(0, tk.END)
 
+# New class for displaying supplier information
