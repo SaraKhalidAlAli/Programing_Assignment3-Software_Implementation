@@ -205,3 +205,153 @@ class DisplayEmployeeWindow:
             messagebox.showinfo("Employee Information", info_str)
         else:
             messagebox.showerror("Error", "Employee ID not found")
+
+class EmployeeWindow:
+    def __init__(self, master, employee_list):
+        self.master = master
+        self.master.title("Add Employee")
+        self.employee_list = employee_list
+
+        # Labels and entry fields for attributes
+        self.name_label = tk.Label(master, text="Name:")
+        self.name_label.grid(row=0, column=0, padx=10, pady=5)
+        self.name_entry = tk.Entry(master)
+        self.name_entry.grid(row=0, column=1, padx=10, pady=5)
+
+        self.emp_id_label = tk.Label(master, text="Employee ID:")
+        self.emp_id_label.grid(row=1, column=0, padx=10, pady=5)
+        self.emp_id_entry = tk.Entry(master)
+        self.emp_id_entry.grid(row=1, column=1, padx=10, pady=5)
+
+        self.job_title_label = tk.Label(master, text="Job Title:")
+        self.job_title_label.grid(row=2, column=0, padx=10, pady=5)
+        self.job_title_var = tk.StringVar(master)
+        self.job_title_var.set("Manager")  # Default job title
+        self.job_title_optionmenu = tk.OptionMenu(master, self.job_title_var, "Manager", "Salesperson")
+        self.job_title_optionmenu.grid(row=2, column=1, padx=10, pady=5)
+
+        # Button to save employee data
+        self.save_button = tk.Button(master, text="Save", command=self.save_employee)
+        self.save_button.grid(row=3, columnspan=2, padx=10, pady=5)
+
+    def save_employee(self):
+        # Retrieve data from entry fields
+        name = self.name_entry.get()
+        emp_id = self.emp_id_entry.get()
+        job_title = self.job_title_var.get()
+
+        # Validate input data
+        if name and emp_id:
+            # Save data to the employee list
+            self.employee_list.append((name, emp_id, job_title))
+            messagebox.showinfo("Success", "Employee data saved successfully!")
+        else:
+            messagebox.showerror("Error", "Please fill in all fields!")
+
+        # Clear entry fields
+        self.name_entry.delete(0, tk.END)
+        self.emp_id_entry.delete(0, tk.END)
+'''
+'''
+class DisplayEmployeeWindow:
+    def __init__(self, master, employee_list):
+        self.master = master
+        self.master.title("Display Employee")
+        self.employee_list = employee_list
+
+        # Label and entry field for employee ID
+        self.emp_id_label = tk.Label(master, text="Employee ID:")
+        self.emp_id_label.grid(row=0, column=0, padx=10, pady=5)
+        self.emp_id_entry = tk.Entry(master)
+        self.emp_id_entry.grid(row=0, column=1, padx=10, pady=5)
+
+        # Button to display employee information
+        self.display_button = tk.Button(master, text="Display", command=self.display_employee_info)
+        self.display_button.grid(row=1, columnspan=2, padx=10, pady=5)
+
+    def display_employee_info(self):
+        # Retrieve employee ID from entry field
+        emp_id = self.emp_id_entry.get()
+
+        # Search for employee in the employee list
+        found_employee = None
+        for employee in self.employee_list:
+            if employee[1] == emp_id:
+                found_employee = employee
+                break
+
+        if found_employee:
+            # Display employee information
+            info_str = f"Name: {found_employee[0]}\nEmployee ID: {found_employee[1]}\nJob Title: {found_employee[2]}"
+            messagebox.showinfo("Employee Information", info_str)
+        else:
+            messagebox.showerror("Error", "Employee ID not found")'''
+
+
+'''class ClientWindow:
+    def __init__(self, master, client_data):
+        self.master = master
+        self.master.title("Add Client")
+        self.client_data = client_data
+
+        # Labels and entry fields for client attributes
+        self.client_id_label = tk.Label(master, text="Client ID:")
+        self.client_id_label.grid(row=0, column=0, padx=10, pady=5)
+        self.client_id_entry = tk.Entry(master)
+        self.client_id_entry.grid(row=0, column=1, padx=10, pady=5)
+
+        self.name_label = tk.Label(master, text="Name:")
+        self.name_label.grid(row=1, column=0, padx=10, pady=5)
+        self.name_entry = tk.Entry(master)
+        self.name_entry.grid(row=1, column=1, padx=10, pady=5)
+
+        self.address_label = tk.Label(master, text="Address:")
+        self.address_label.grid(row=2, column=0, padx=10, pady=5)
+        self.address_entry = tk.Entry(master)
+        self.address_entry.grid(row=2, column=1, padx=10, pady=5)
+
+        self.phone_number_label = tk.Label(master, text="Phone Number:")
+        self.phone_number_label.grid(row=3, column=0, padx=10, pady=5)
+        self.phone_number_entry = tk.Entry(master)
+        self.phone_number_entry.grid(row=3, column=1, padx=10, pady=5)
+
+        self.budget_label = tk.Label(master, text="Budget:")
+        self.budget_label.grid(row=4, column=0, padx=10, pady=5)
+        self.budget_entry = tk.Entry(master)
+        self.budget_entry.grid(row=4, column=1, padx=10, pady=5)
+
+        # Options for event types
+        self.event_type_label = tk.Label(master, text="Event Type:")
+        self.event_type_label.grid(row=5, column=0, padx=10, pady=5)
+        self.event_type_var = tk.StringVar(master)
+        self.event_type_var.set("Wedding")  # Default event type
+        self.event_type_optionmenu = tk.OptionMenu(master, self.event_type_var, "Wedding", "Birthday", "Themed Party", "Graduation")
+        self.event_type_optionmenu.grid(row=5, column=1, padx=10, pady=5)
+
+        self.date_label = tk.Label(master, text="Date:")
+        self.date_label.grid(row=6, column=0, padx=10, pady=5)
+        self.date_entry = tk.Entry(master)
+        self.date_entry.grid(row=6, column=1, padx=10, pady=5)
+
+        self.time_label = tk.Label(master, text="Time:")
+        self.time_label.grid(row=7, column=0, padx=10, pady=5)
+        self.time_entry = tk.Entry(master)
+        self.time_entry.grid(row=7, column=1, padx=10, pady=5)
+
+        # Options for venue
+        self.venue_label = tk.Label(master, text="Venue:")
+        self.venue_label.grid(row=8, column=0, padx=10, pady=5)
+        self.venue_var = tk.StringVar(master)
+        self.venue_var.set("Hotel")  # Default venue
+        self.venue_optionmenu = tk.OptionMenu(master, self.venue_var, "Hotel", "Convention Hall", "Outdoor Space")
+        self.venue_optionmenu.grid(row=8, column=1, padx=10, pady=5)
+
+        # Label and entry field for event ID
+        self.event_id_label = tk.Label(master, text="Event ID:")
+        self.event_id_label.grid(row=9, column=0, padx=10, pady=5)
+        self.event_id_entry = tk.Entry(master)
+        self.event_id_entry.grid(row=9, column=1, padx=10, pady=5)
+
+        # Button to save client data
+        self.save_button = tk.Button(master, text="Save", command=self.save_client)
+        self.save_button.grid(row=10, columnspan=2, padx=10, pady=5)
