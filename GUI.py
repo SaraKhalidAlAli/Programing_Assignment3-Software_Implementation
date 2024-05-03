@@ -85,3 +85,18 @@ class MainWindow:
     def open_delete_venue_window(self):
         delete_venue_window = tk.Toplevel(self.master)
         DeleteVenueWindow(delete_venue_window, self.venue_list, self.status_bar)
+
+    def open_employee_window(self):
+        employee_window = tk.Toplevel(self.master)
+        EmployeeWindow(employee_window, self.employee_list)
+    def open_display_employee_window(self):
+        display_employee_window = tk.Toplevel(self.master)
+        DisplayEmployeeWindow(display_employee_window, self.employee_list)
+
+    def open_client_window(self):
+        client_window = tk.Toplevel(self.master)
+        ClientWindow(client_window, self.client_data)  # Pass client_data dictionary
+    def open_display_client_window(self):
+        display_client_window = tk.Toplevel(self.master)
+        DisplayClientWindow(display_client_window, self.client_data)  # Pass client_data dictionary
+
