@@ -487,32 +487,34 @@ class GuestWindow:
         self.client_data = client_data
 
         # Labels and entry fields for guest attributes
+        # Label for name input form guest
         self.name_label = tk.Label(master, text="Name:")
         self.name_label.grid(row=0, column=0, padx=10, pady=5)
         self.name_entry = tk.Entry(master)
         self.name_entry.grid(row=0, column=1, padx=10, pady=5)
-
+        # Label for Address input form guest
         self.address_label = tk.Label(master, text="Address:")
         self.address_label.grid(row=1, column=0, padx=10, pady=5)
         self.address_entry = tk.Entry(master)
         self.address_entry.grid(row=1, column=1, padx=10, pady=5)
-
+        # Label for Phone Number form guest
         self.phone_number_label = tk.Label(master, text="Phone Number:")
         self.phone_number_label.grid(row=2, column=0, padx=10, pady=5)
         self.phone_number_entry = tk.Entry(master)
         self.phone_number_entry.grid(row=2, column=1, padx=10, pady=5)
-
+        # Label for email input form guest
         self.email_label = tk.Label(master, text="Email:")
         self.email_label.grid(row=3, column=0, padx=10, pady=5)
         self.email_entry = tk.Entry(master)
         self.email_entry.grid(row=3, column=1, padx=10, pady=5)
-
+        # Label for event ID input form guest to associate
         # Dropdown menu to select the event
-        self.event_label = tk.Label(master, text="Event:")
+        self.event_label = tk.Label(master, text="Event: ")
         self.event_label.grid(row=4, column=0, padx=10, pady=5)
         self.event_var = tk.StringVar(master)
 
         # Populate event options if client data is available
+        #handling if there is no event of such type
         self.event_options = list(client_data.keys()) if client_data else ["No Events Available"]
         self.event_var.set(self.event_options[0])  # Set default event
         self.event_optionmenu = tk.OptionMenu(master, self.event_var, *self.event_options)
@@ -581,34 +583,35 @@ class SupplierWindow:
         self.supplier_list = supplier_list
 
         # Add attributes for the supplier
+        # Label for ID input for supplier
         self.supplier_id_label = tk.Label(master, text="Supplier ID:")
         self.supplier_id_label.grid(row=0, column=0, padx=10, pady=5)
         self.supplier_id_entry = tk.Entry(master)
         self.supplier_id_entry.grid(row=0, column=1, padx=10, pady=5)
-
+        # Label for name input for supplier
         self.name_label = tk.Label(master, text="Name:")
         self.name_label.grid(row=1, column=0, padx=10, pady=5)
         self.name_entry = tk.Entry(master)
         self.name_entry.grid(row=1, column=1, padx=10, pady=5)
-
+        # Label for the product the supplier will supply
         self.product_label = tk.Label(master, text="Product:")
         self.product_label.grid(row=2, column=0, padx=10, pady=5)
         self.product_entry = tk.Entry(master)
         self.product_entry.grid(row=2, column=1, padx=10, pady=5)
-
+        # Label for number input for supplier
         self.phone_number_label = tk.Label(master, text="Phone Number:")
         self.phone_number_label.grid(row=3, column=0, padx=10, pady=5)
         self.phone_number_entry = tk.Entry(master)
         self.phone_number_entry.grid(row=3, column=1, padx=10, pady=5)
-
+        # Label for email input for supplier
         self.email_label = tk.Label(master, text="Email:")
         self.email_label.grid(row=4, column=0, padx=10, pady=5)
         self.email_entry = tk.Entry(master)
         self.email_entry.grid(row=4, column=1, padx=10, pady=5)
-
+        # Label for the event the suppler will supply to
         self.event_label = tk.Label(master, text="Event:")
         self.event_label.grid(row=5, column=0, padx=10, pady=5)
-        self.event_var = tk.StringVar(master)
+        self.event_var = tk.StringVar(master) #handle non existnt eent id
         self.event_var.set(event_options[0] if event_options else "No Events Available")
         self.event_optionmenu = tk.OptionMenu(master, self.event_var, *event_options)
         self.event_optionmenu.grid(row=5, column=1, padx=10, pady=5)
@@ -694,22 +697,22 @@ class VenueWindow:
         self.name_label.grid(row=1, column=0, padx=10, pady=5)
         self.name_entry = tk.Entry(master)
         self.name_entry.grid(row=1, column=1, padx=10, pady=5)
-
+        #Label for adress where the  venue willl take place
         self.address_label = tk.Label(master, text="Address:")
         self.address_label.grid(row=2, column=0, padx=10, pady=5)
         self.address_entry = tk.Entry(master)
         self.address_entry.grid(row=2, column=1, padx=10, pady=5)
-
+        #Label for the contant info of the  venue
         self.contact_label = tk.Label(master, text="Contact:")
         self.contact_label.grid(row=3, column=0, padx=10, pady=5)
         self.contact_entry = tk.Entry(master)
         self.contact_entry.grid(row=3, column=1, padx=10, pady=5)
-
+        #Label for the minimum amount of people who can attend/fit
         self.min_guests_label = tk.Label(master, text="Min Guests:")
         self.min_guests_label.grid(row=4, column=0, padx=10, pady=5)
         self.min_guests_entry = tk.Entry(master)
         self.min_guests_entry.grid(row=4, column=1, padx=10, pady=5)
-
+        #Label for the maximum amount of people who can attend/fit
         self.max_guests_label = tk.Label(master, text="Max Guests:")
         self.max_guests_label.grid(row=5, column=0, padx=10, pady=5)
         self.max_guests_entry = tk.Entry(master)
@@ -918,15 +921,15 @@ class ModifySupplierWindow:
         self.master.title("Modify Supplier")
         self.supplier_list = supplier_list
         self.status_bar = status_bar
-
+        #lables that can be modified
         self.supplier_id_label = tk.Label(master, text="Supplier ID:")
         self.supplier_id_label.grid(row=0, column=0, padx=10, pady=5)
         self.supplier_id_entry = tk.Entry(master)
         self.supplier_id_entry.grid(row=0, column=1, padx=10, pady=5)
-
+        #lables that can be modified
         self.load_button = tk.Button(master, text="Load", command=self.load_supplier)
         self.load_button.grid(row=1, columnspan=2)
-
+        #lables that can be modified
         self.name_label = tk.Label(master, text="Name:")
         self.name_entry = tk.Entry(master)
         self.product_label = tk.Label(master, text="Product:")
@@ -974,7 +977,7 @@ class ModifyGuestWindow:
         self.master.title("Modify Guest")
         self.guest_data = guest_data
         self.status_bar = status_bar
-
+        #lables that can be modified
         self.guest_id_label = tk.Label(master, text="Guest ID:")
         self.guest_id_label.grid(row=0, column=0, padx=10, pady=5)
         self.guest_id_entry = tk.Entry(master)
@@ -982,7 +985,7 @@ class ModifyGuestWindow:
 
         self.load_button = tk.Button(master, text="Load", command=self.load_guest)
         self.load_button.grid(row=1, columnspan=2)
-
+        #lables that can be modified
         self.name_label = tk.Label(master, text="Name:")
         self.name_entry = tk.Entry(master)
         self.address_label = tk.Label(master, text="Address:")
@@ -1002,6 +1005,7 @@ class ModifyGuestWindow:
         else: #error handling
             messagebox.showerror("Error", "Guest ID not found")
     def display_guest_fields(self):
+        #position in the webpage
         self.name_label.grid(row=2, column=0)
         self.name_entry.grid(row=2, column=1)
         self.address_label.grid(row=3, column=0)
@@ -1044,15 +1048,15 @@ class ModifyVenueWindow:
         self.load_button = tk.Button(master, text="Load", command=self.load_venue)
         self.load_button.grid(row=1, columnspan=2)
 
-        self.name_label = tk.Label(master, text="Name:")
+        self.name_label = tk.Label(master, text="Name:")        #lables that can be modified
         self.name_entry = tk.Entry(master)
-        self.address_label = tk.Label(master, text="Address:")
+        self.address_label = tk.Label(master, text="Address:")        #lables that can be modified
         self.address_entry = tk.Entry(master)
-        self.contact_label = tk.Label(master, text="Contact:")
+        self.contact_label = tk.Label(master, text="Contact:")        #lables that can be modified
         self.contact_entry = tk.Entry(master)
-        self.min_guests_label = tk.Label(master, text="Min Guests:")
+        self.min_guests_label = tk.Label(master, text="Min Guests:")        #lables that can be modified
         self.min_guests_entry = tk.Entry(master)
-        self.max_guests_label = tk.Label(master, text="Max Guests:")
+        self.max_guests_label = tk.Label(master, text="Max Guests:")        #lables that can be modified
         self.max_guests_entry = tk.Entry(master)
 
         self.save_button = tk.Button(master, text="Save", command=self.save_venue)
@@ -1069,6 +1073,7 @@ class ModifyVenueWindow:
                 return
         messagebox.showerror("Error", "Venue ID not found")
     def display_venue_fields(self):
+        #positino for the button on page
         self.name_label.grid(row=2, column=0)
         self.name_entry.grid(row=2, column=1)
         self.address_label.grid(row=3, column=0)
