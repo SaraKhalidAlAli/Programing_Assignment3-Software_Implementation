@@ -593,3 +593,36 @@ class SupplierWindow:
         self.email_entry.delete(0, tk.END)
 
 # New class for displaying supplier information
+class DisplaySupplierInfoWindow:
+    def __init__(self, master, supplier_list):
+        self.master = master
+        self.master.title("Display Supplier Info")
+        self.supplier_list = supplier_list
+
+        # Label and entry field for supplier ID
+        self.supplier_id_label = tk.Label(master, text="Supplier ID:")
+        self.supplier_id_label.grid(row=0, column=0, padx=10, pady=5)
+        self.supplier_id_entry = tk.Entry(master)
+        self.supplier_id_entry.grid(row=0, column=1, padx=10, pady=5)
+
+        # Button to display supplier information
+        self.display_button = tk.Button(master, text="Display", command=self.display_supplier_info)
+        self.display_button.grid(row=1, columnspan=2, padx=10, pady=5)
+
+    def display_supplier_info(self):
+        # Retrieve supplier ID from entry field
+        supplier_id = self.supplier_id_entry.get()
+
+        # Search for supplier in the supplier list
+        found_supplier = None
+        for supplier in self.supplier_list:
+            if supplier[0] == supplier_id:
+                found_supplier = supplier
+                break
+
+        if found_supplier:
+            # Display supplier information
+            info_str = f"Name: {found_supplier[1]}\nProduct: {found_supplier[2]}\nPhone Number: {found_supplier[3]}\nEmail: {found_supplier[4]}"
+            messagebox.showinfo("Supplier Information", info_str)
+        else:
+            messagebox.showerror("Error", "Supplier ID not found")
