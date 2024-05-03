@@ -566,3 +566,29 @@ class SupplierWindow:
         self.save_button = tk.Button(master, text="Save", command=self.save_supplier)
         self.save_button.grid(row=6, columnspan=2, padx=10, pady=5)
 
+
+   def save_supplier(self):
+        # Retrieve data from entry fields
+        supplier_id = self.supplier_id_entry.get()
+        name = self.name_entry.get()
+        product = self.product_entry.get()
+        phone_number = self.phone_number_entry.get()
+        email = self.email_entry.get()
+        event_id = self.event_var.get()
+
+        # Validate input data
+        if supplier_id and name and product and phone_number and email:
+            # Here you can handle the supplier data as needed
+            # Assuming you add the supplier to supplier_list
+            self.supplier_list.append((supplier_id, name, product, phone_number, email, event_id))
+            messagebox.showinfo("Success", "Supplier data saved successfully!")
+        else:
+            messagebox.showerror("Error", "Please fill in all fields!")
+
+        # Clear entry fields
+        self.supplier_id_entry.delete(0, tk.END)
+        self.name_entry.delete(0, tk.END)
+        self.product_entry.delete(0, tk.END)
+        self.phone_number_entry.delete(0, tk.END)
+        self.email_entry.delete(0, tk.END)
+
