@@ -244,13 +244,20 @@ class Caterer(Supplier):
 
 # Pickling functions for the classes above:
 
+    """Save an object to a file using pickle.
+    Args:
+        obj (object): The Python object to pickle.
+        filename (str): The file path where the object will be saved."""
 def save_object(obj, filename):
-    """Save an object to a file using pickle."""
     with open(filename, 'wb') as outp:
         pickle.dump(obj, outp, pickle.HIGHEST_PROTOCOL)
 
+    """ Load an object from a pickle file.
+    Args:
+        filename (str): The file path from where the object will be loaded.
+    Returns: object: The unpickled Python object."""
 def load_object(filename):
-    """Load an object from a pickle file."""
+    #Load an object from a pickle file.
     with open(filename, 'rb') as inp:
         return pickle.load(inp)
 

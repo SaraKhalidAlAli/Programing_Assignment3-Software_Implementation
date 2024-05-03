@@ -694,3 +694,5 @@ class VenueWindow:
         self.contact_entry.delete(0, tk.END)
         self.min_guests_entry.delete(0, tk.END)
         self.max_guests_entry.delete(0, tk.END)
+
+
