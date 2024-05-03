@@ -806,3 +806,73 @@ class ModifyEmployeeWindow:
 
         # If not found, display an error message
         messagebox.showerror("Error", "Employee not found. Please reload and try again.")
+
+
+class ModifyClientWindow:
+    def __init__(self, master, client_data, status_bar):
+        self.master = master
+        self.master.title("Modify Client and Event")
+        self.client_data = client_data
+        self.status_bar = status_bar
+
+        # Widgets to input and display client ID
+        self.client_id_label = tk.Label(master, text="Client ID:")
+        self.client_id_label.grid(row=0, column=0, padx=10, pady=5)
+        self.client_id_entry = tk.Entry(master)
+        self.client_id_entry.grid(row=0, column=1, padx=10, pady=5)
+
+        # Button to load client data
+        self.load_button = tk.Button(master, text="Load", command=self.load_client)
+        self.load_button.grid(row=1, column=0, columnspan=2)
+
+        # Widgets for modifying client data (hidden until load is successful)
+        self.name_label = tk.Label(master, text="Name:")
+        self.name_entry = tk.Entry(master)
+        self.phone_label = tk.Label(master, text="Phone Number:")
+        self.phone_entry = tk.Entry(master)
+        self.budget_label = tk.Label(master, text="Budget:")
+        self.budget_entry = tk.Entry(master)
+
+        # Button to save modifications
+        self.save_button = tk.Button(master, text="Save", command=self.save_client)
+
+    def load_client(self):
+        client_id = self.client_id_entry.get()
+        client = self.client_data.get(client_id)
+        if client:
+            self.name_entry.insert(0, client['Name'])
+            self.phone_entry.insert(0, client['Phone Number'])
+            self.budget_entry.insert(0, client['Budget'])
+            self.display_client_fields()
+        else:
+            messagebox.showerror("Error", "Client ID not found")
+
+    def display_client_fields(self):
+        self.name_label.grid(row=2, column=0)
+        self.name_entry.grid(row=2, column=1)
+        self.phone_label.grid(row=3, column=0)
+        self.phone_entry.grid(row=3, column=1)
+        self.budget_label.grid(row=4, column=0)
+        self.budget_entry.grid(row=4, column=1)
+        self.save_button.grid(row=5, columnspan=2)
+
+    def save_client(self):
+        client_id = self.client_id_entry.get()
+        new_name = self.name_entry.get()
+        new_phone = self.phone_entry.get()
+        new_budget = self.budget_entry.get()
+
+        if not new_name or not new_phone or not new_budget:
+            messagebox.showerror("Error", "All fields must be filled out.")
+            return
+
+        if client_id in self.client_data:
+            self.client_data[client_id] = {
+                'Name': new_name,
+                'Phone Number': new_phone,
+                'Budget': new_budget
+            }
+            messagebox.showinfo("Success", "Client updated successfully!")
+            self.status_bar.config(text="Updated client details successfully.")
+        else:
+            messagebox.showerror("Error", "Client not found. Please reload and try again.")
