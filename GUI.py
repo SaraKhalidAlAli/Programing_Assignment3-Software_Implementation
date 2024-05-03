@@ -123,7 +123,22 @@ class MainWindow:
         display_venue_info_window = tk.Toplevel(self.master)
         DisplayVenueInfoWindow(display_venue_info_window, self.venue_list)
 
-
+   ###
+    def open_modify_employee_window(self):
+        modify_window = tk.Toplevel(self.master)
+        ModifyEmployeeWindow(modify_window, self.employee_list, self.status_bar)
+    def open_modify_client_window(self):
+        modify_window = tk.Toplevel(self.master)
+        ModifyClientWindow(modify_window, self.client_data, self.status_bar)
+    def open_modify_supplier_window(self):
+        modify_window = tk.Toplevel(self.master)
+        ModifySupplierWindow(modify_window, self.supplier_list, self.status_bar)
+    def open_modify_guest_window(self):
+        modify_window = tk.Toplevel(self.master)
+        ModifyGuestWindow(modify_window, self.guest_data, self.status_bar)
+    def open_modify_venue_window(self):
+        modify_window = tk.Toplevel(self.master)
+        ModifyVenueWindow(modify_window, self.venue_list, self.status_bar)
 
 #adding the logic to make the button work:
 class EmployeeWindow:
@@ -728,3 +743,4 @@ class DisplayVenueInfoWindow:
             messagebox.showinfo("Venue Information", info_str)
         else:
             messagebox.showerror("Error", "Venue ID not found")
+
