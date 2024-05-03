@@ -1094,3 +1094,29 @@ class DeleteEmployeeWindow:
 
         messagebox.showerror("Error", "Employee ID not found")
         self.status_bar.config(text="Employee ID not found")
+
+
+
+class DeleteClientWindow:
+    def __init__(self, master, client_data, status_bar):
+        self.master = master
+        self.master.title("Delete Client")
+        self.client_data = client_data
+        self.status_bar = status_bar
+
+        self.client_id_label = tk.Label(master, text="Client ID:")
+        self.client_id_label.grid(row=0, column=0, padx=10, pady=5)
+        self.client_id_entry = tk.Entry(master)
+        self.client_id_entry.grid(row=0, column=1, padx=10, pady=5)
+
+        self.delete_button = tk.Button(master, text="Delete", command=self.delete_client)
+        self.delete_button.grid(row=1, columnspan=2, padx=10, pady=5)
+    def delete_client(self):
+        client_id = self.client_id_entry.get()
+        if client_id in self.client_data:
+            del self.client_data[client_id]
+            messagebox.showinfo("Success", "Client deleted successfully!")
+            self.status_bar.config(text="Client deleted successfully!")
+        else:
+            messagebox.showerror("Error", "Client ID not found")
+            self.status_bar.config(text="Client ID not found")
