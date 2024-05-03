@@ -1172,3 +1172,32 @@ class DeleteSupplierWindow:
 
         messagebox.showerror("Error", "Supplier ID not found")
         self.status_bar.config(text="Supplier ID not found")
+
+class DeleteVenueWindow:
+    def __init__(self, master, venue_list, status_bar):
+        self.master = master
+        self.master.title("Delete Venue")
+        self.venue_list = venue_list
+        self.status_bar = status_bar
+
+        # Label and entry field for venue ID
+        self.venue_id_label = tk.Label(master, text="Venue ID:")
+        self.venue_id_label.grid(row=0, column=0, padx=10, pady=5)
+        self.venue_id_entry = tk.Entry(master)
+        self.venue_id_entry.grid(row=0, column=1, padx=10, pady=5)
+
+        # Button to delete venue
+        self.delete_button = tk.Button(master, text="Delete", command=self.delete_venue)
+        self.delete_button.grid(row=1, columnspan=2, padx=10, pady=5)
+
+    def delete_venue(self):
+        venue_id = self.venue_id_entry.get()
+        for i, venue in enumerate(self.venue_list):
+            if venue[0] == venue_id:
+                self.venue_list.pop(i)
+                messagebox.showinfo("Success", "Venue deleted successfully!")
+                self.status_bar.config(text="Venue deleted successfully!")
+                return
+
+        messagebox.showerror("Error", "Venue ID not found")
+        self.status_bar.config(text="Venue ID not found")
