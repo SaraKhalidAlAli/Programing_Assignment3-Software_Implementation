@@ -1144,3 +1144,27 @@ class DeleteGuestWindow:
         else:
             messagebox.showerror("Error", "Guest ID not found")
             self.status_bar.config(text="Guest ID not found")
+
+
+class DeleteSupplierWindow:
+    def __init__(self, master, supplier_list, status_bar):
+        self.master = master
+        self.master.title("Delete Supplier")
+        self.supplier_list = supplier_list
+        self.status_bar = status_bar
+
+        self.supplier_id_label = tk.Label(master, text="Supplier ID:")
+        self.supplier_id_label.grid(row=0, column=0, padx=10, pady=5)
+        self.supplier_id_entry = tk.Entry(master)
+        self.supplier_id_entry.grid(row=0, column=1, padx=10, pady=5)
+
+        self.delete_button = tk.Button(master, text="Delete", command=self.delete_supplier)
+        self.delete_button.grid(row=1, columnspan=2, padx=10, pady=5)
+    def delete_supplier(self):
+        supplier_id = self.supplier_id_entry.get()
+        # Iterate through the list to find and delete the supplier by ID
+        for i, supplier in enumerate(self.supplier_list):
+            if supplier[0] == supplier_id:  # Assuming the supplier ID is the first item in the tuple
+                del self.supplier_list[i]
+                messagebox.showinfo("Success", "Supplier deleted successfully!")
+                self.status_bar.config(text="Supplier deleted successfully!")
