@@ -1120,3 +1120,27 @@ class DeleteClientWindow:
         else:
             messagebox.showerror("Error", "Client ID not found")
             self.status_bar.config(text="Client ID not found")
+
+class DeleteGuestWindow:
+    def __init__(self, master, guest_data, status_bar):
+        self.master = master
+        self.master.title("Delete Guest")
+        self.guest_data = guest_data
+        self.status_bar = status_bar
+
+        self.guest_id_label = tk.Label(master, text="Guest ID:")
+        self.guest_id_label.grid(row=0, column=0, padx=10, pady=5)
+        self.guest_id_entry = tk.Entry(master)
+        self.guest_id_entry.grid(row=0, column=1, padx=10, pady=5)
+
+        self.delete_button = tk.Button(master, text="Delete", command=self.delete_guest)
+        self.delete_button.grid(row=1, columnspan=2, padx=10, pady=5)
+    def delete_guest(self):
+        guest_id = self.guest_id_entry.get()
+        if guest_id in self.guest_data:
+            del self.guest_data[guest_id]
+            messagebox.showinfo("Success", "Guest deleted successfully!")
+            self.status_bar.config(text="Guest deleted successfully!")
+        else:
+            messagebox.showerror("Error", "Guest ID not found")
+            self.status_bar.config(text="Guest ID not found")
