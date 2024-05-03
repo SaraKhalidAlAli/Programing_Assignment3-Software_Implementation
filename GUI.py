@@ -122,3 +122,86 @@ class MainWindow:
     def open_display_venue_info_window(self):
         display_venue_info_window = tk.Toplevel(self.master)
         DisplayVenueInfoWindow(display_venue_info_window, self.venue_list)
+
+
+
+#adding the logic to make the button work:
+class EmployeeWindow:
+    def __init__(self, master, employee_list):
+        self.master = master
+        self.master.title("Add Employee")
+        self.employee_list = employee_list
+
+        # Labels and entry fields for attributes
+        self.name_label = tk.Label(master, text="Name:")
+        self.name_label.grid(row=0, column=0, padx=10, pady=5)
+        self.name_entry = tk.Entry(master)
+        self.name_entry.grid(row=0, column=1, padx=10, pady=5)
+
+        self.emp_id_label = tk.Label(master, text="Employee ID:")
+        self.emp_id_label.grid(row=1, column=0, padx=10, pady=5)
+        self.emp_id_entry = tk.Entry(master)
+        self.emp_id_entry.grid(row=1, column=1, padx=10, pady=5)
+
+        self.job_title_label = tk.Label(master, text="Job Title:")
+        self.job_title_label.grid(row=2, column=0, padx=10, pady=5)
+        self.job_title_var = tk.StringVar(master)
+        self.job_title_var.set("Manager")  # Default job title
+        self.job_title_optionmenu = tk.OptionMenu(master, self.job_title_var, "Manager", "Salesperson")
+        self.job_title_optionmenu.grid(row=2, column=1, padx=10, pady=5)
+
+        # Button to save employee data
+        self.save_button = tk.Button(master, text="Save", command=self.save_employee)
+        self.save_button.grid(row=3, columnspan=2, padx=10, pady=5)
+
+    def save_employee(self):
+        # Retrieve data from entry fields
+        name = self.name_entry.get()
+        emp_id = self.emp_id_entry.get()
+        job_title = self.job_title_var.get()
+
+        # Validate input data
+        if name and emp_id:
+            # Save data to the employee list
+            self.employee_list.append((name, emp_id, job_title))
+            messagebox.showinfo("Success", "Employee data saved successfully!")
+        else:
+            messagebox.showerror("Error", "Please fill in all fields!")
+
+        # Clear entry fields
+        self.name_entry.delete(0, tk.END)
+        self.emp_id_entry.delete(0, tk.END)
+
+class DisplayEmployeeWindow:
+    def __init__(self, master, employee_list):
+        self.master = master
+        self.master.title("Display Employee")
+        self.employee_list = employee_list
+
+        # Label and entry field for employee ID
+        self.emp_id_label = tk.Label(master, text="Employee ID:")
+        self.emp_id_label.grid(row=0, column=0, padx=10, pady=5)
+        self.emp_id_entry = tk.Entry(master)
+        self.emp_id_entry.grid(row=0, column=1, padx=10, pady=5)
+
+        # Button to display employee information
+        self.display_button = tk.Button(master, text="Display", command=self.display_employee_info)
+        self.display_button.grid(row=1, columnspan=2, padx=10, pady=5)
+
+    def display_employee_info(self):
+        # Retrieve employee ID from entry field
+        emp_id = self.emp_id_entry.get()
+
+        # Search for employee in the employee list
+        found_employee = None
+        for employee in self.employee_list:
+            if employee[1] == emp_id:
+                found_employee = employee
+                break
+
+        if found_employee:
+            # Display employee information
+            info_str = f"Name: {found_employee[0]}\nEmployee ID: {found_employee[1]}\nJob Title: {found_employee[2]}"
+            messagebox.showinfo("Employee Information", info_str)
+        else:
+            messagebox.showerror("Error", "Employee ID not found")
