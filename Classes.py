@@ -1,5 +1,5 @@
 #adding the classes
-
+import pickle
 class Employee:
     #attributes for employee
     def __init__(self, name, emp_id, department, job_title, basic_salary, age, date_of_birth, passport_details):
@@ -239,3 +239,17 @@ class Caterer(Supplier):
         return self.max_guests
     def set_max_guests(self, max_guests):
         self.max_guests = max_guests
+
+
+
+# Pickling functions for the classes above:
+
+def save_object(obj, filename):
+    """Save an object to a file using pickle."""
+    with open(filename, 'wb') as outp:
+        pickle.dump(obj, outp, pickle.HIGHEST_PROTOCOL)
+
+def load_object(filename):
+    """Load an object from a pickle file."""
+    with open(filename, 'rb') as inp:
+        return pickle.load(inp)
