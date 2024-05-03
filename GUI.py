@@ -71,72 +71,104 @@ class MainWindow:
 
     # Methods for opening each window should be defined similarly to existing methods
     def open_delete_employee_window(self):
+        # Opens a new window to delete an existing employee.
         delete_employee_window = tk.Toplevel(self.master)
         DeleteEmployeeWindow(delete_employee_window, self.employee_list, self.status_bar)
+
     def open_delete_client_window(self):
+        # Opens a new window to delete an existing client and their event information.
         delete_client_window = tk.Toplevel(self.master)
         DeleteClientWindow(delete_client_window, self.client_data, self.status_bar)
+
     def open_delete_supplier_window(self):
+        # Opens a new window to delete a supplier from the system.
         delete_supplier_window = tk.Toplevel(self.master)
         DeleteSupplierWindow(delete_supplier_window, self.supplier_list, self.status_bar)
+
     def open_delete_guest_window(self):
+        # Opens a new window to delete a guest from an event.
         delete_guest_window = tk.Toplevel(self.master)
         DeleteGuestWindow(delete_guest_window, self.guest_data, self.status_bar)
+
     def open_delete_venue_window(self):
+        # Opens a new window to delete a venue from the list of available venues.
         delete_venue_window = tk.Toplevel(self.master)
         DeleteVenueWindow(delete_venue_window, self.venue_list, self.status_bar)
 
 
     def open_employee_window(self):
+        # Opens a new window to add a new employee.
         employee_window = tk.Toplevel(self.master)
         EmployeeWindow(employee_window, self.employee_list)
+
     def open_display_employee_window(self):
+        # Opens a new window to display information about existing employees.
         display_employee_window = tk.Toplevel(self.master)
         DisplayEmployeeWindow(display_employee_window, self.employee_list)
 
     def open_client_window(self):
+        # Opens a new window to add a new client and their event information.
         client_window = tk.Toplevel(self.master)
-        ClientWindow(client_window, self.client_data)  # Pass client_data dictionary
+        ClientWindow(client_window, self.client_data)
+
     def open_display_client_window(self):
+        # Opens a new window to display details about clients and their event preferences.
         display_client_window = tk.Toplevel(self.master)
-        DisplayClientWindow(display_client_window, self.client_data)  # Pass client_data dictionary
+        DisplayClientWindow(display_client_window, self.client_data)
 
     def open_guest_window(self):
+        # Opens a new window to add a new guest to an event.
         guest_window = tk.Toplevel(self.master)
-        GuestWindow(guest_window, self.client_data)  # Pass client_data dictionary
+        GuestWindow(guest_window, self.client_data)
+
     def open_display_guest_info_window(self):
-        # Create a new window to input guest ID
+        # Opens a new window to display information about guests.
         display_guest_info_window = tk.Toplevel(self.master)
         DisplayGuestInfoWindow(display_guest_info_window, self.client_data)
 
     def open_supplier_window(self):
+        # Opens a new window to add a new supplier.
         self.supplier_window = tk.Toplevel(self.master)
         SupplierWindow(self.supplier_window, self.supplier_list, event_options=["Event 1", "Event 2"])
+
     def open_display_supplier_info_window(self):
+        # Opens a new window to display supplier details.
         display_supplier_info_window = tk.Toplevel(self.master)
         DisplaySupplierInfoWindow(display_supplier_info_window, self.supplier_list)
 
     def open_venue_window(self):
+        # Opens a new window to add a new venue.
         venue_window = tk.Toplevel(self.master)
         VenueWindow(venue_window, self.venue_list)
+
     def open_display_venue_info_window(self):
+        # Opens a new window to display information about venues.
         display_venue_info_window = tk.Toplevel(self.master)
         DisplayVenueInfoWindow(display_venue_info_window, self.venue_list)
 
-   ###
+
     def open_modify_employee_window(self):
+        # Opens a new window to modify existing employee information.
         modify_window = tk.Toplevel(self.master)
         ModifyEmployeeWindow(modify_window, self.employee_list, self.status_bar)
+
     def open_modify_client_window(self):
+        # Opens a new window to modify existing client and event information.
         modify_window = tk.Toplevel(self.master)
         ModifyClientWindow(modify_window, self.client_data, self.status_bar)
+
     def open_modify_supplier_window(self):
+        # Opens a new window to modify details of an existing supplier.
         modify_window = tk.Toplevel(self.master)
         ModifySupplierWindow(modify_window, self.supplier_list, self.status_bar)
+
     def open_modify_guest_window(self):
+        # Opens a new window to modify information about an existing guest.
         modify_window = tk.Toplevel(self.master)
         ModifyGuestWindow(modify_window, self.guest_data, self.status_bar)
+
     def open_modify_venue_window(self):
+        # Opens a new window to modify details of an existing venue.
         modify_window = tk.Toplevel(self.master)
         ModifyVenueWindow(modify_window, self.venue_list, self.status_bar)
 
@@ -581,8 +613,7 @@ class SupplierWindow:
         self.save_button = tk.Button(master, text="Save", command=self.save_supplier)
         self.save_button.grid(row=6, columnspan=2, padx=10, pady=5)
 
-
-   def save_supplier(self):
+    def save_supplier(self):
         # Retrieve data from entry fields
         supplier_id = self.supplier_id_entry.get()
         name = self.name_entry.get()
