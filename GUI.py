@@ -992,3 +992,75 @@ class ModifyGuestWindow:
             self.status_bar.config(text="Updated guest details successfully.")
         else:
             messagebox.showerror("Error", "Guest not found. Please reload and try again.")
+
+
+class ModifyVenueWindow:
+    def __init__(self, master, venue_list, status_bar):
+        self.master = master
+        self.master.title("Modify Venue")
+        self.venue_list = venue_list
+        self.status_bar = status_bar
+
+        self.venue_id_label = tk.Label(master, text="Venue ID:")
+        self.venue_id_label.grid(row=0, column=0, padx=10, pady=5)
+        self.venue_id_entry = tk.Entry(master)
+        self.venue_id_entry.grid(row=0, column=1, padx=10, pady=5)
+
+        self.load_button = tk.Button(master, text="Load", command=self.load_venue)
+        self.load_button.grid(row=1, columnspan=2)
+
+        self.name_label = tk.Label(master, text="Name:")
+        self.name_entry = tk.Entry(master)
+        self.address_label = tk.Label(master, text="Address:")
+        self.address_entry = tk.Entry(master)
+        self.contact_label = tk.Label(master, text="Contact:")
+        self.contact_entry = tk.Entry(master)
+        self.min_guests_label = tk.Label(master, text="Min Guests:")
+        self.min_guests_entry = tk.Entry(master)
+        self.max_guests_label = tk.Label(master, text="Max Guests:")
+        self.max_guests_entry = tk.Entry(master)
+
+        self.save_button = tk.Button(master, text="Save", command=self.save_venue)
+    def load_venue(self):
+        venue_id = self.venue_id_entry.get()
+        for venue in self.venue_list:
+            if venue[0] == venue_id:
+                self.name_entry.insert(0, venue[1])
+                self.address_entry.insert(0, venue[2])
+                self.contact_entry.insert(0, venue[3])
+                self.min_guests_entry.insert(0, venue[4])
+                self.max_guests_entry.insert(0, venue[5])
+                self.display_venue_fields()
+                return
+        messagebox.showerror("Error", "Venue ID not found")
+    def display_venue_fields(self):
+        self.name_label.grid(row=2, column=0)
+        self.name_entry.grid(row=2, column=1)
+        self.address_label.grid(row=3, column=0)
+        self.address_entry.grid(row=3, column=1)
+        self.contact_label.grid(row=4, column=0)
+        self.contact_entry.grid(row=4, column=1)
+        self.min_guests_label.grid(row=5, column=0)
+        self.min_guests_entry.grid(row=5, column=1)
+        self.max_guests_label.grid(row=6, column=0)
+        self.max_guests_entry.grid(row=6, column=1)
+        self.save_button.grid(row=7, columnspan=2)
+    def save_venue(self):
+        venue_id = self.venue_id_entry.get()
+        new_name = self.name_entry.get()
+        new_address = self.address_entry.get()
+        new_contact = self.contact_entry.get()
+        new_min_guests = self.min_guests_entry.get()
+        new_max_guests = self.max_guests_entry.get()
+        if not new_name or not new_address or not new_contact or not new_min_guests or not new_max_guests:
+            messagebox.showerror("Error", "All fields must be filled out.")
+            return
+        for index, venue in enumerate(self.venue_list):
+            if venue[0] == venue_id:
+                updated_venue = (venue_id, new_name, new_address, new_contact, new_min_guests, new_max_guests)
+                self.venue_list[index] = updated_venue
+                messagebox.showinfo("Success", "Venue updated successfully!")
+                self.status_bar.config(text="Updated venue details successfully.")
+                break
+        else:
+            messagebox.showerror("Error", "Venue not found. Please reload and try again.")
